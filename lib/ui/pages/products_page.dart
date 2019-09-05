@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:market/bloc/shared_bloc/shared_bloc.dart';
+import 'package:market/data/datasource/fake_product_datasource_impl.dart';
+import 'package:market/data/mapper/product_mapper.dart';
+import 'package:market/data/repository/product_repository.dart';
+import 'package:market/datasource/product_datasource.dart';
+import 'package:market/domain/repository/product_repository.dart';
+import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
 
 
 import 'package:market/ui/widgets/small_info_product_widget.dart';
@@ -11,6 +18,18 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
+
+  SharedBloc bloc;
+
+  @override
+  void initState() {
+    ProductDatasource _productDatasource = FakeProductDatasourceImpl();
+    ProductMapper _productMapper = ProductMapper();
+    ProductRepository _productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
+    GetProductsByCategoryUsecase _getProductsByCategoryUsecase = GetProductsByCategoryUsecase(_productRepository);
+    bloc = SharedBloc(_getProductsByCategoryUsecase);
+    super.initState();
+  }
 
   final String _title = 'Маркет';
   final int _crossAxisCount = 2;
@@ -47,11 +66,12 @@ class _ProductsPageState extends State<ProductsPage> {
   _buildBody() {
     return Center(
       child: StreamBuilder(
+        stream: bloc.getProducts,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return _showWidgetWithData();
+            return _showWidgetWithData(snapshot.data);
           } else if (snapshot.hasError) {
-            return _showWidgetWithError("poka tak");
+            return _showWidgetWithError(snapshot.error);
           }
           return _showWidgetWithLoading();
         },
@@ -67,7 +87,7 @@ class _ProductsPageState extends State<ProductsPage> {
     return Text(error);
   }
 
-  _showWidgetWithData() {
+  _showWidgetWithData(dynamic data) {
     return Column(
       children: <Widget>[
         Container(
@@ -90,16 +110,18 @@ class _ProductsPageState extends State<ProductsPage> {
         ),
         Expanded(
           child: GridView.builder(
+            itemCount: data.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
+              var item = data[index];
               return InkWell(
                   onTap: () {},
                   child: SmallInfoProductWidget(
-                      "Дутая куртка",
+                      item.name,
                       "Tommy Hilfiger",
-                      "Томас Джейкоб Хилфигер основал свой одноименный бренд Tommy Hilfiger в 1985 году, включив в его ассортимент одежду, аксессуары, дорожные сумки и духи. ",
-                      14320,
-                      'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg'));
+                      item.description,
+                      item.price,
+                      item.imageURL));
             },
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: _crossAxisCount,
