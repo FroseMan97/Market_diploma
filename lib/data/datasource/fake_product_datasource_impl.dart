@@ -23,7 +23,15 @@ class FakeProductDatasourceImpl extends FakeProductDatasource {
   }
 
   @override
-  Future<List<ProductModel>> getProductsByManufactureID(String manufactureID) async {
-    return productsList.where((test) => test.manufactureID == manufactureID).toList();
+  Future<List<ProductModel>> getProductsByManufactureID(
+      String manufactureID) async {
+    return productsList
+        .where((test) => test.manufactureID == manufactureID)
+        .toList();
+  }
+
+  @override
+  Future<List<ProductModel>> getProducts() async {
+    return productsList;
   }
 }
