@@ -25,10 +25,10 @@ class ProductMapper {
   }
 
   List<ProductEntity> mapModelsToEntities(List<ProductModel> productModels){
-    return productModels.map((item)=>mapModelToEntity(item));
+    return productModels.map((item)=>mapModelToEntity(item)).toList();
   }
 
   List<ProductModel> mapEntitiesToModels(List<ProductEntity> productEntities){
-    return productEntities.map((item)=>mapEntityToModel(item));
+    return productEntities.map((item)=>mapEntityToModel(item)).toList();
   }
 }

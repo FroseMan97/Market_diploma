@@ -13,10 +13,10 @@ class ManufactureMapper {
   }
 
   List<ManufactureEntity> mapModelsToEntities(List<ManufactureModel> manufactureModels){
-    return manufactureModels.map((item)=>mapModelToEntity(item));
+    return manufactureModels.map((item)=>mapModelToEntity(item)).toList();
   }
 
   List<ManufactureModel> mapEntitiesToModels(List<ManufactureEntity> manufactureEntities){
-    return manufactureEntities.map((item)=>mapEntityToModel(item));
+    return manufactureEntities.map((item)=>mapEntityToModel(item)).toList();
   }
 }

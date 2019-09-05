@@ -1,7 +1,7 @@
 import 'package:market/data/models/manufacture_model.dart';
-import 'package:market/datasource/fake_manufacture_datasource.dart';
+import 'package:market/datasource/manufacture_datasource.dart';
 
-class FakeManufactureDatasourceImpl extends FakeManufactureDatasource{
+class FakeManufactureDatasourceImpl extends ManufactureDatasource{
 
   List<ManufactureModel> manufactureList = [
     ManufactureModel('manufactureID1', 'name1', 'address1'),
