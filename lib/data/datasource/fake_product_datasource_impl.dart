@@ -4,13 +4,13 @@ import 'package:market/data/models/product_model.dart';
 class FakeProductDatasourceImpl extends ProductDatasource {
   List<ProductModel> productsList = [
     ProductModel('productID1', 'manufactureID', 'categoryID1', 'name1',
-        'из description', '', 3501),
+        'description1', '', 3501),
     ProductModel('productID2', 'manufactureID', 'categoryID2', 'name2',
-        'из description', '', 3502),
+        'description2', '', 3502),
     ProductModel('productID3', 'manufactureID', 'categoryID2', 'name3',
-        'из description', '', 3503),
+        'description3', '', 3503),
     ProductModel('productID4', 'manufactureID', 'categoryID1', 'name4',
-        'из description', '', 3504)
+        'description4', '', 3504)
   ];
   @override
   Future<ProductModel> getProductByID(String productID) async {

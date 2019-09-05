@@ -9,6 +9,8 @@ void main() async{
   ProductDatasource _productDatasource = FakeProductDatasourceImpl();
   ProductMapper _productMapper = ProductMapper();
   ProductRepository productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
-  List<ProductEntity> list = await productRepository.getProducts();
-  print(list);
+  List<ProductEntity> list1 = await productRepository.getProducts();
+  List<ProductEntity> list2 = await productRepository.getProductsByCategoryID('categoryID2');
+  print(list1);
+  print(list2);
 }
