@@ -3,7 +3,7 @@ import 'package:market/data/mapper/product_mapper.dart';
 import 'package:market/domain/entity/product_entity.dart';
 import 'package:market/domain/repository/product_repository.dart';
 
-class ProductsRepositoryImpl extends ProductRepository {
+class ProductsRepositoryImpl implements ProductRepository {
   ProductDatasource _productDatasource;
   ProductMapper _productMapper;
 

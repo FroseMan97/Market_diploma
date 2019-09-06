@@ -1,7 +1,7 @@
 import 'package:market/datasource/product_datasource.dart';
 import 'package:market/data/models/product_model.dart';
 
-class FakeProductDatasourceImpl extends ProductDatasource {
+class FakeProductDatasourceImpl implements ProductDatasource {
   List<ProductModel> productsList = [
     ProductModel('productID1', 'manufactureID1', 'categoryID1', 'name1',
         'description1', '', 3501),

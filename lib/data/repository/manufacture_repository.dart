@@ -3,7 +3,7 @@ import 'package:market/datasource/manufacture_datasource.dart';
 import 'package:market/domain/entity/manufacture_entity.dart';
 import 'package:market/domain/repository/manufacture_repository.dart';
 
-class ManufactureRepositoryImpl extends ManufactureRepository {
+class ManufactureRepositoryImpl implements ManufactureRepository {
   ManufactureDatasource _manufactureDatasource;
   ManufactureMapper _manufactureMapper;
 

@@ -3,7 +3,7 @@ import 'package:market/datasource/client_datasource.dart';
 import 'package:market/domain/entity/client_entity.dart';
 import 'package:market/domain/repository/client_repository.dart';
 
-class ClientRepositoryImpl extends ClientRepository{
+class ClientRepositoryImpl implements ClientRepository{
 
   ClientDatasource _clientDatasource;
   ClientMapper _clientMapper;

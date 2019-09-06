@@ -1,7 +1,7 @@
 import 'package:market/data/models/client_model.dart';
 import 'package:market/datasource/client_datasource.dart';
 
-class FakeClientDatasourceImpl extends ClientDatasource{
+class FakeClientDatasourceImpl implements ClientDatasource{
 
   List<ClientModel> clientList = [
     ClientModel('clientID1', 'email1', 'phone1', 'name1', 'surname1'),

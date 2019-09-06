@@ -3,7 +3,7 @@ import 'package:market/datasource/category_datasource.dart';
 import 'package:market/domain/entity/category_entity.dart';
 import 'package:market/domain/repository/category_repository.dart';
 
-class CategoryRepositoryImpl extends CategoryRepository{
+class CategoryRepositoryImpl implements CategoryRepository{
 
   CategoryDatasource _categoryDatasource;
   CategoryMapper _categoryMapper;
