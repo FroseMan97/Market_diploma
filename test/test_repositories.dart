@@ -19,12 +19,12 @@ void main() async{
   ProductMapper _productMapper = ProductMapper();
   ProductRepository productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
   List<ProductEntity> list1 = await productRepository.getProducts();
-  List<ProductEntity> list2 = await productRepository.getProductsByCategoryID('categoryID2');
-  ProductEntity product = await productRepository.getProductByID('productID1');
-  ManufactureEntity manufacture = await manufactureRepository.getManufactureByID(product.manufactureID);
+  List<ProductEntity> list2 = await productRepository.getProductsByCategoryID('categoryID20');
+  ProductEntity product = await productRepository.getProductByID('productID10');
+  //ManufactureEntity manufacture = await manufactureRepository.getManufactureByID(product.manufactureID);
   print(list1);
   print(list2);
 
   print(product);
-  print(manufacture);
+  //print(manufacture);
 }

@@ -14,29 +14,20 @@ class FakeProductDatasourceImpl implements ProductDatasource {
   ];
   @override
   Future<ProductModel> getProductByID(String productID) async {
-    return productsList.firstWhere((test) => test.productID == productID);
+    return productsList.firstWhere((test) => test.productID == productID, orElse: ()=>null);
   }
 
   @override
   Future<List<ProductModel>> getProductsByCategoryID(String categoryID) async {
-    var iterable = productsList.where((test) => test.categoryID == categoryID);
-    if (iterable.isEmpty) {
-      return null;
-    } else {
-      return iterable.toList();
-    }
+    return productsList.where((test) => test.categoryID == categoryID).toList();
   }
 
   @override
   Future<List<ProductModel>> getProductsByManufactureID(
       String manufactureID) async {
-    var iterable =
-        productsList.where((test) => test.manufactureID == manufactureID);
-    if (iterable.isEmpty) {
-      return null;
-    } else {
-      return iterable.toList();
-    }
+    return productsList
+        .where((test) => test.manufactureID == manufactureID)
+        .toList();
   }
 
   @override
