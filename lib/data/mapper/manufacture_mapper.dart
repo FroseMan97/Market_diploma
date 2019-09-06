@@ -3,20 +3,40 @@ import 'package:market/domain/entity/manufacture_entity.dart';
 
 class ManufactureMapper {
   ManufactureModel mapEntityToModel(ManufactureEntity manufactureEntity) {
-    return ManufactureModel(manufactureEntity.manufactureID,
-        manufactureEntity.name, manufactureEntity.address);
+    ManufactureModel manufactureModel;
+    if (manufactureEntity != null) {
+      manufactureModel = ManufactureModel(manufactureEntity.manufactureID,
+          manufactureEntity.name, manufactureEntity.address);
+    }
+    return manufactureModel;
   }
 
   ManufactureEntity mapModelToEntity(ManufactureModel manufactureModel) {
-    return ManufactureEntity(manufactureModel.manufactureID,
-        manufactureModel.name, manufactureModel.address);
+    ManufactureEntity manufactureEntity;
+    if (manufactureModel != null) {
+      manufactureEntity = ManufactureEntity(manufactureModel.manufactureID,
+          manufactureModel.name, manufactureModel.address);
+    }
+    return manufactureEntity;
   }
 
-  List<ManufactureEntity> mapModelsToEntities(List<ManufactureModel> manufactureModels){
-    return manufactureModels.map((item)=>mapModelToEntity(item)).toList();
+  List<ManufactureEntity> mapModelsToEntities(
+      List<ManufactureModel> manufactureModels) {
+    List<ManufactureEntity> manufactureEntities;
+    if (manufactureModels != null) {
+      manufactureEntities =
+          manufactureModels.map((item) => mapModelToEntity(item)).toList();
+    }
+    return manufactureEntities;
   }
 
-  List<ManufactureModel> mapEntitiesToModels(List<ManufactureEntity> manufactureEntities){
-    return manufactureEntities.map((item)=>mapEntityToModel(item)).toList();
+  List<ManufactureModel> mapEntitiesToModels(
+      List<ManufactureEntity> manufactureEntities) {
+    List<ManufactureModel> manufactureModels;
+    if (manufactureEntities != null) {
+      manufactureModels =
+          manufactureEntities.map((item) => mapEntityToModel(item)).toList();
+    }
+    return manufactureModels;
   }
 }

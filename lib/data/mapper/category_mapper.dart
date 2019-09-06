@@ -3,18 +3,34 @@ import 'package:market/domain/entity/category_entity.dart';
 
 class CategoryMapper{
   CategoryModel mapEntityToModel(CategoryEntity categoryEntity){
-    return CategoryModel(categoryEntity.categoryID, categoryEntity.name);
+    CategoryModel categoryModel;
+    if(categoryEntity != null){
+      categoryModel = CategoryModel(categoryEntity.categoryID, categoryEntity.name);
+    }
+    return categoryModel;
   }
 
   CategoryEntity mapModelToEntity(CategoryModel categoryModel){
-    return CategoryEntity(categoryModel.categoryID, categoryModel.name);
+    CategoryEntity categoryEntity;
+    if(categoryModel != null){
+      categoryEntity = CategoryEntity(categoryModel.categoryID, categoryModel.name);
+    }
+    return categoryEntity;
   }
 
   List<CategoryEntity> mapModelsToEntities(List<CategoryModel> manufactureModels){
-    return manufactureModels.map((item)=>mapModelToEntity(item)).toList();
+    List<CategoryEntity> manufactureEntities;
+    if(manufactureModels != null){
+     manufactureEntities= manufactureModels.map((item)=>mapModelToEntity(item)).toList();
+    }
+    return manufactureEntities;
   }
 
   List<CategoryModel> mapEntitiesToModels(List<CategoryEntity> categoryEntities){
-    return categoryEntities.map((item)=>mapEntityToModel(item)).toList();
+    List<CategoryModel> categoryModels;
+    if(categoryEntities != null){
+      categoryModels = categoryEntities.map((item)=>mapEntityToModel(item)).toList();
+    }
+    return categoryModels;
   }
 }
