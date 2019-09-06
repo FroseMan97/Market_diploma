@@ -1,7 +1,8 @@
 # Market diploma
 
-A new Flutter project.
+Кроссплатформенное приложение Магазин на Flutter на диплом.
 
-## Getting Started
+## День 2
+Fake datasources, repositories, mappers, models, entities, products page, test usecase and bloc
 
-Кроссплатформенное приложение Магазин на Flutter на диплом
+<img src="work_log/2day.png" width="285" height="570">
