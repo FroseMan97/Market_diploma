@@ -4,24 +4,26 @@ class MainBottomNavigationBar extends BottomNavigationBar {
   static var _type = BottomNavigationBarType.fixed;
   static var _showSelectedLabels = false;
   static var _showUnselectedLabels = false;
-  static var _colorIcon = Colors.black;
+  static var _itemColor = Colors.black;
+  static var _selectedItemColor = Colors.red;
   static var _items = [
     BottomNavigationBarItem(
-        icon: Icon(Icons.storage, color: _colorIcon), title: new Text('')),
+        icon: Icon(Icons.storage, ), title: new Text('')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.camera, color: _colorIcon), title: new Text('')),
+        icon: Icon(Icons.camera, ), title: new Text('')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.shopping_basket, color: _colorIcon),
+        icon: Icon(Icons.shopping_basket, ),
         title: new Text('')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.star, color: _colorIcon), title: new Text('')),
+        icon: Icon(Icons.star, ), title: new Text('')),
     BottomNavigationBarItem(
-        icon: Icon(Icons.supervisor_account, color: _colorIcon),
+        icon: Icon(Icons.supervisor_account, ),
         title: new Text('')),
   ];
 
   MainBottomNavigationBar(int _currentIndex, void Function(int) _onTap)
       : super(
+            selectedItemColor: _selectedItemColor,
             currentIndex: _currentIndex,
             items: _items,
             type: _type,

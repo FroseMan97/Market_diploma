@@ -12,6 +12,12 @@ class _MainPageState extends State<MainPage> {
   MainBottomNavigationBarBloc _mainBottomNavigationBarBloc;
 
   @override
+  void initState() {
+    _mainBottomNavigationBarBloc = MainBottomNavigationBarBloc();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: StreamBuilder<MainBottomNavigationBarItems>(
@@ -31,16 +37,19 @@ class _MainPageState extends State<MainPage> {
               return ProductsPage();
               break;
             case MainBottomNavigationBarItems.BARCODE_SCAN_PAGE:
-              // TODO: Handle this case.
+              return Container();
               break;
             case MainBottomNavigationBarItems.BASKET_PAGE:
-              // TODO: Handle this case.
+              return Container();
               break;
             case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
-              // TODO: Handle this case.
+              return Container();
               break;
             case MainBottomNavigationBarItems.PROFILE_PAGE:
-              // TODO: Handle this case.
+              return Container();
+              break;
+            default:
+              return Container();
               break;
           }
         },
