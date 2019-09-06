@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-
-
 import 'package:market/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -11,7 +9,6 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> {
-
   final String _title = 'Маркет';
   final int _crossAxisCount = 2;
 
@@ -32,16 +29,10 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          title: Text(_title),
-        ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: _buildBody(),
-        ));
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: _buildBody(),
+    );
   }
 
   _buildBody() {
@@ -109,35 +100,6 @@ class _ProductsPageState extends State<ProductsPage> {
           ),
         ),
       ],
-    );
-  }
-
-  _buildBottomNavigationBar() {
-    return BottomNavigationBar(
-      currentIndex: 0,
-      type: BottomNavigationBarType.fixed,
-      showSelectedLabels: false,
-      showUnselectedLabels: false,
-      items: [
-        BottomNavigationBarItem(
-            icon: Icon(Icons.storage, color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.camera, color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_basket,
-                color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.star, color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')),
-        BottomNavigationBarItem(
-            icon: Icon(Icons.supervisor_account,
-                color: Color.fromARGB(255, 0, 0, 0)),
-            title: new Text('')),
-      ],
-      onTap: (index) {},
     );
   }
 }

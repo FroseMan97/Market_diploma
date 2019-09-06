@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:market/ui/pages/products_page.dart';
+import 'package:market/ui/pages/main_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.red,
       ),
-      home: ProductsPage(),
+      home: MainPage(),
     );
   }
 }
