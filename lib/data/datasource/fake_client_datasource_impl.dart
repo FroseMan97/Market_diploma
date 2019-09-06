@@ -12,7 +12,7 @@ class FakeClientDatasourceImpl implements ClientDatasource{
 
   @override
   Future<ClientModel> getClientByID(String clientID) async {
-    return clientList.where((test) => test.clientID == clientID).single;
+    return clientList.firstWhere((test) => test.clientID == clientID);
   }
 
   @override
