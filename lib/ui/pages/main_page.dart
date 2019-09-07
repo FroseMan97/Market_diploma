@@ -18,6 +18,12 @@ class _MainPageState extends State<MainPage> {
   }
 
   @override
+  void dispose() {
+    _mainBottomNavigationBarBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return SafeArea(
           child: Scaffold(
