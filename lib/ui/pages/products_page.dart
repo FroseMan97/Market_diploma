@@ -1,4 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:market/bloc/products_list_bloc.dart';
+import 'package:market/data/datasource/fake_product_datasource_impl.dart';
+import 'package:market/data/mapper/product_mapper.dart';
+import 'package:market/data/repository/product_repository.dart';
+import 'package:market/datasource/product_datasource.dart';
+import 'package:market/datasource1/fake_product_datasource_impl.dart';
+import 'package:market/domain/repository/product_repository.dart';
+import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
 import 'package:market/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends StatefulWidget {
@@ -9,6 +17,9 @@ class ProductsPage extends StatefulWidget {
 }
 
 class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClientMixin {
+
+  ProductsListBloc _productsListBloc;
+
   final String _title = 'Маркет';
   final int _crossAxisCount = 2;
 
@@ -28,6 +39,24 @@ class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClie
   ];
 
   @override
+  void initState() {
+    //TODO dependency injection
+    ProductDatasource _productDatasource = FakeProductDatasourceImpl();
+    ProductMapper _productMapper = ProductMapper();
+    ProductRepository _productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
+    GetProductsByCategoryUsecase _getProductsByCategoryUsecase = GetProductsByCategoryUsecase(_productRepository);
+    _productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
+    _productsListBloc.fetchProductsByCategory('categoryID');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _productsListBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   bool get wantKeepAlive => true;
 
   @override
@@ -42,7 +71,7 @@ class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClie
   _buildBody() {
     return Center(
       child: StreamBuilder(
-        initialData: 'null',
+        stream: _productsListBloc.getProductsList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return _showWidgetWithData();
