@@ -7,6 +7,6 @@ class GetProductsByCategoryUsecase{
   GetProductsByCategoryUsecase(this._productRepository);
 
   Future<List<ProductEntity>> execute(String categoryID) async{
-    return await _productRepository.getProductsByCategoryID(categoryID);
+    return  _productRepository.getProductsByCategoryID(categoryID);
   }
 }
