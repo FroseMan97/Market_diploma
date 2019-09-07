@@ -29,8 +29,33 @@ class _MainPageState extends State<MainPage> {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Test'),
-        ), //TODO stream must emit titles
+          title: StreamBuilder<MainBottomNavigationBarItems>(
+            initialData: _mainBottomNavigationBarBloc.defaultItem,
+            stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
+            builder: (BuildContext context,
+                AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
+                  var title = '';
+              switch (snapshot.data) {
+                case MainBottomNavigationBarItems.PRODUCTS_PAGE:
+                  title = ProductsPage.title;
+                  break;
+                case MainBottomNavigationBarItems.BARCODE_SCAN_PAGE:
+                  // TODO: Handle this case.
+                  break;
+                case MainBottomNavigationBarItems.BASKET_PAGE:
+                  title = BasketPage.title;
+                  break;
+                case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
+                  // TODO: Handle this case.
+                  break;
+                case MainBottomNavigationBarItems.PROFILE_PAGE:
+                  // TODO: Handle this case.
+                  break;
+              }
+              return Text(title);
+            },
+          ),
+        ),
         bottomNavigationBar: StreamBuilder<MainBottomNavigationBarItems>(
           initialData: _mainBottomNavigationBarBloc.defaultItem,
           stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
