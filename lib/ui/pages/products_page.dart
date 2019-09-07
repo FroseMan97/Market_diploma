@@ -4,23 +4,20 @@ import 'package:market/data/datasource/fake_product_datasource_impl.dart';
 import 'package:market/data/mapper/product_mapper.dart';
 import 'package:market/data/repository/product_repository.dart';
 import 'package:market/datasource/product_datasource.dart';
-import 'package:market/datasource1/fake_product_datasource_impl.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
 import 'package:market/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends StatefulWidget {
   ProductsPage({Key key}) : super(key: key);
+  static final String title = 'Последнее';
 
   @override
   _ProductsPageState createState() => _ProductsPageState();
 }
 
-class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClientMixin {
-
+class _ProductsPageState extends State<ProductsPage> {
   ProductsListBloc _productsListBloc;
-
-  final String _title = 'Маркет';
   final int _crossAxisCount = 2;
 
   final List<DropdownMenuItem> _categories = [
@@ -40,11 +37,14 @@ class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClie
 
   @override
   void initState() {
+    print('initstate products_page');
     //TODO dependency injection
     ProductDatasource _productDatasource = FakeProductDatasourceImpl();
     ProductMapper _productMapper = ProductMapper();
-    ProductRepository _productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
-    GetProductsByCategoryUsecase _getProductsByCategoryUsecase = GetProductsByCategoryUsecase(_productRepository);
+    ProductRepository _productRepository =
+        ProductsRepositoryImpl(_productDatasource, _productMapper);
+    GetProductsByCategoryUsecase _getProductsByCategoryUsecase =
+        GetProductsByCategoryUsecase(_productRepository);
     _productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
     _productsListBloc.fetchProductsByCategory('categoryID');
     super.initState();
@@ -52,16 +52,13 @@ class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClie
 
   @override
   void dispose() {
+    print('dispose products_page');
     _productsListBloc.dispose();
     super.dispose();
   }
 
   @override
-  bool get wantKeepAlive => true;
-
-  @override
   Widget build(BuildContext context) {
-    super.build(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: _buildBody(),
