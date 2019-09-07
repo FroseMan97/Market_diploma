@@ -16,6 +16,6 @@ void main()async {
   ProductsListBloc productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
   productsListBloc.fetchProductsByCategory('categoryID1');
   productsListBloc.getProductsList.listen((onData){
-    print(onData);
+    print('1');
   });
 }
