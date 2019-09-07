@@ -10,7 +10,7 @@ import 'package:market/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends StatefulWidget {
   ProductsPage({Key key}) : super(key: key);
-  static final String title = 'Последнее';
+  static final String title = 'Маркет';
 
   @override
   _ProductsPageState createState() => _ProductsPageState();
@@ -47,6 +47,7 @@ class _ProductsPageState extends State<ProductsPage> {
         GetProductsByCategoryUsecase(_productRepository);
     _productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
     _productsListBloc.fetchProductsByCategory('categoryID');
+    ////
     super.initState();
   }
 

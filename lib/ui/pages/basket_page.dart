@@ -7,9 +7,6 @@ class BasketPage extends StatefulWidget {
 }
 
 class _BasketPageState extends State<BasketPage> {
-
-  
-
   @override
   void initState() {
     print('initstate basket_page');
@@ -24,8 +21,10 @@ class _BasketPageState extends State<BasketPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('Basket page'),
+    return Center(
+      child: Container(
+        child: Text('Basket page'),
+      ),
     );
   }
 }
