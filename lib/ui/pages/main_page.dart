@@ -19,40 +19,43 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: StreamBuilder<MainBottomNavigationBarItems>(
-        stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
-        builder: (BuildContext context,
-            AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
-          return MainBottomNavigationBar(snapshot.data.index,
-              _mainBottomNavigationBarBloc.pickMainNavBarItem);
-        },
-      ),
-      body: StreamBuilder<MainBottomNavigationBarItems>(
-        stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
-        builder: (BuildContext context,
-            AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
-          switch (snapshot.data) {
-            case MainBottomNavigationBarItems.PRODUCTS_PAGE:
-              return ProductsPage();
-              break;
-            case MainBottomNavigationBarItems.BARCODE_SCAN_PAGE:
-              return Container();
-              break;
-            case MainBottomNavigationBarItems.BASKET_PAGE:
-              return Container();
-              break;
-            case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
-              return Container();
-              break;
-            case MainBottomNavigationBarItems.PROFILE_PAGE:
-              return Container();
-              break;
-            default:
-              return Container();
-              break;
-          }
-        },
+    return SafeArea(
+          child: Scaffold(
+        appBar: AppBar(title: Text('Test'),), //TODO stream must emit titles
+        bottomNavigationBar: StreamBuilder<MainBottomNavigationBarItems>(
+          stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
+          builder: (BuildContext context,
+              AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
+            return MainBottomNavigationBar(snapshot.data.index,
+                _mainBottomNavigationBarBloc.pickMainNavBarItem);
+          },
+        ),
+        body: StreamBuilder<MainBottomNavigationBarItems>(
+          stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
+          builder: (BuildContext context,
+              AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
+            switch (snapshot.data) {
+              case MainBottomNavigationBarItems.PRODUCTS_PAGE:
+                return ProductsPage();
+                break;
+              case MainBottomNavigationBarItems.BARCODE_SCAN_PAGE:
+                return Container();
+                break;
+              case MainBottomNavigationBarItems.BASKET_PAGE:
+                return Container();
+                break;
+              case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
+                return Container();
+                break;
+              case MainBottomNavigationBarItems.PROFILE_PAGE:
+                return Container();
+                break;
+              default:
+                return Container();
+                break;
+            }
+          },
+        ),
       ),
     );
   }

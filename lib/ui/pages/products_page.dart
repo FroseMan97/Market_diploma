@@ -8,7 +8,7 @@ class ProductsPage extends StatefulWidget {
   _ProductsPageState createState() => _ProductsPageState();
 }
 
-class _ProductsPageState extends State<ProductsPage> {
+class _ProductsPageState extends State<ProductsPage> with AutomaticKeepAliveClientMixin {
   final String _title = 'Маркет';
   final int _crossAxisCount = 2;
 
@@ -28,7 +28,11 @@ class _ProductsPageState extends State<ProductsPage> {
   ];
 
   @override
+  bool get wantKeepAlive => true;
+
+  @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       child: _buildBody(),
@@ -38,6 +42,7 @@ class _ProductsPageState extends State<ProductsPage> {
   _buildBody() {
     return Center(
       child: StreamBuilder(
+        initialData: 'null',
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return _showWidgetWithData();
