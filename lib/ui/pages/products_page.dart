@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:market/bloc/products_list_bloc.dart';
 import 'package:market/data/datasource/fake_product_datasource_impl.dart';
 import 'package:market/data/mapper/product_mapper.dart';
@@ -18,7 +19,6 @@ class ProductsPage extends BasePage {
 
 class _ProductsPageState extends State<ProductsPage> {
   ProductsListBloc _productsListBloc;
-  final int _crossAxisCount = 2;
 
   final List<DropdownMenuItem> _categories = [
     DropdownMenuItem(
@@ -45,7 +45,7 @@ class _ProductsPageState extends State<ProductsPage> {
     GetProductsByCategoryUsecase _getProductsByCategoryUsecase =
         GetProductsByCategoryUsecase(_productRepository);
     _productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
-    _productsListBloc.fetchProductsByCategory('categoryID');
+    _productsListBloc.fetchProductsByCategory('categoryID1');
     ////
     super.initState();
   }
@@ -88,48 +88,34 @@ class _ProductsPageState extends State<ProductsPage> {
   }
 
   _showWidgetWithData() {
-    return Column(
+    return ListView(
       children: <Widget>[
-        Container(
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              DropdownButton(
-                items: _categories,
-                onChanged: (it) {},
-              ),
-              DropdownButton(
-                items: _sorting,
-                onChanged: (it) {},
-              ),
-            ],
-          ),
-        ),
-        SizedBox(
-          height: 10,
-        ),
-        Expanded(
-          child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 10),
-            child: GridView.builder(
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return InkWell(
-                    onTap: () {},
-                    child: SmallInfoProductWidget(
-                        "Дутая куртка",
-                        "Tommy Hilfiger",
-                        "Томас Джейкоб Хилфигер основал свой одноименный бренд Tommy Hilfiger в 1985 году, включив в его ассортимент одежду, аксессуары, дорожные сумки и духи. ",
-                        14320,
-                        'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg'));
-              },
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: _crossAxisCount,
-                  childAspectRatio: MediaQuery.of(context).size.width /
-                      MediaQuery.of(context).size.height *
-                      1.3),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: <Widget>[
+            DropdownButton(
+              items: _categories,
+              onChanged: (it) {},
             ),
-          ),
+            DropdownButton(
+              items: _sorting,
+              onChanged: (it) {},
+            ),
+          ],
+        ),
+        StaggeredGridView.countBuilder(
+          primary: false,
+          shrinkWrap: true,
+          itemCount: 10,
+          crossAxisCount: 4,
+          itemBuilder: (context, i) {
+            return SmallInfoProductWidget(
+                "Дутая куртка",
+                "Tommy Hilfiger",
+                14320,
+                'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg');
+          },
+          staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
         ),
       ],
     );
