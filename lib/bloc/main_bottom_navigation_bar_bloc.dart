@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:market/bloc/base/base_bloc.dart';
 import 'package:market/ui/widgets/main_bottom_navigation_bar_widget.dart';
 import 'package:rxdart/rxdart.dart';
 
-class MainBottomNavigationBarBloc implements BaseBloc {
+class MainBottomNavigationBarBloc extends BaseBloc {
   var defaultItem = MainBottomNavigationBarItems.PRODUCTS_PAGE;
   final BehaviorSubject _mainNavBarSubject =
       BehaviorSubject<MainBottomNavigationBarItems>();
@@ -33,13 +35,6 @@ class MainBottomNavigationBarBloc implements BaseBloc {
   @override
   void dispose() {
     _mainNavBarSubject.close();
+    super.dispose();
   }
-
-  @override
-  // TODO: implement errorSink
-  Sink<String> get errorSink => null;
-
-  @override
-  // TODO: implement errorStream
-  Stream<String> get errorStream => null;
 }
