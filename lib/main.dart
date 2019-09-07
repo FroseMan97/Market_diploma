@@ -1,16 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:market/ui/pages/main_page.dart';
 
-void main() => runApp(MyApp());
+import 'app.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.red,
-      ),
-      home: MainPage(),
-    );
-  }
-}
+void main() => runApp(App());
+

@@ -37,7 +37,6 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   void initState() {
-    print('initstate products_page');
     //TODO dependency injection
     ProductDatasource _productDatasource = FakeProductDatasourceImpl();
     ProductMapper _productMapper = ProductMapper();
@@ -53,7 +52,6 @@ class _ProductsPageState extends State<ProductsPage> {
 
   @override
   void dispose() {
-    print('dispose products_page');
     _productsListBloc.dispose();
     super.dispose();
   }
@@ -61,7 +59,6 @@ class _ProductsPageState extends State<ProductsPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 10),
       child: _buildBody(),
     );
   }
@@ -112,23 +109,26 @@ class _ProductsPageState extends State<ProductsPage> {
           height: 10,
         ),
         Expanded(
-          child: GridView.builder(
-            shrinkWrap: true,
-            itemBuilder: (context, index) {
-              return InkWell(
-                  onTap: () {},
-                  child: SmallInfoProductWidget(
-                      "Дутая куртка",
-                      "Tommy Hilfiger",
-                      "Томас Джейкоб Хилфигер основал свой одноименный бренд Tommy Hilfiger в 1985 году, включив в его ассортимент одежду, аксессуары, дорожные сумки и духи. ",
-                      14320,
-                      'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg'));
-            },
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: _crossAxisCount,
-                childAspectRatio: MediaQuery.of(context).size.width /
-                    MediaQuery.of(context).size.height *
-                    1.3),
+          child: Container(
+            padding: EdgeInsets.symmetric(horizontal: 10),
+            child: GridView.builder(
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return InkWell(
+                    onTap: () {},
+                    child: SmallInfoProductWidget(
+                        "Дутая куртка",
+                        "Tommy Hilfiger",
+                        "Томас Джейкоб Хилфигер основал свой одноименный бренд Tommy Hilfiger в 1985 году, включив в его ассортимент одежду, аксессуары, дорожные сумки и духи. ",
+                        14320,
+                        'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg'));
+              },
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: _crossAxisCount,
+                  childAspectRatio: MediaQuery.of(context).size.width /
+                      MediaQuery.of(context).size.height *
+                      1.3),
+            ),
           ),
         ),
       ],

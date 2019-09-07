@@ -1,4 +1,4 @@
-import 'package:market/bloc/base_bloc.dart';
+import 'package:market/bloc/base/base_bloc.dart';
 import 'package:market/ui/widgets/main_bottom_navigation_bar_widget.dart';
 import 'package:rxdart/rxdart.dart';
 

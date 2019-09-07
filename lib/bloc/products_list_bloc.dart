@@ -1,4 +1,4 @@
-import 'package:market/bloc/base_bloc.dart';
+import 'package:market/bloc/base/base_bloc.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
 import 'package:rxdart/subjects.dart';
 
@@ -9,8 +9,8 @@ class ProductsListBloc implements BaseBloc {
 
   ProductsListBloc(this._getProductsByCategoryUsecase);
 
-  void fetchProductsByCategory(String categoryID){
-    _getProductsByCategoryUsecase.execute(categoryID)
+  void fetchProductsByCategory(String categoryID)async{
+    await _getProductsByCategoryUsecase.execute(categoryID)
     .then((data)=>_productsListSubject.add(data))
     .catchError((error)=>_productsListSubject.addError(error)); 
   }
