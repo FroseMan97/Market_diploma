@@ -3,9 +3,9 @@ import 'package:market/ui/widgets/main_bottom_navigation_bar_widget.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MainBottomNavigationBarBloc implements BaseBloc {
-  static var defaultItem = MainBottomNavigationBarItems.PRODUCTS_PAGE;
+  var defaultItem = MainBottomNavigationBarItems.PRODUCTS_PAGE;
   final BehaviorSubject _mainNavBarSubject =
-      BehaviorSubject<MainBottomNavigationBarItems>.seeded(defaultItem);
+      BehaviorSubject<MainBottomNavigationBarItems>();
   Stream get getMainNavBarItem => _mainNavBarSubject.stream;
 
   void pickMainNavBarItem(int i) {

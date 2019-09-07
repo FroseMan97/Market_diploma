@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:market/bloc/main_bottom_navigation_bar_bloc.dart';
+import 'package:market/ui/pages/basket_page.dart';
 import 'package:market/ui/pages/products_page.dart';
 import 'package:market/ui/widgets/main_bottom_navigation_bar_widget.dart';
 
@@ -26,9 +27,12 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-          child: Scaffold(
-        appBar: AppBar(title: Text('Test'),), //TODO stream must emit titles
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Test'),
+        ), //TODO stream must emit titles
         bottomNavigationBar: StreamBuilder<MainBottomNavigationBarItems>(
+          initialData: _mainBottomNavigationBarBloc.defaultItem,
           stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
           builder: (BuildContext context,
               AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
@@ -37,6 +41,7 @@ class _MainPageState extends State<MainPage> {
           },
         ),
         body: StreamBuilder<MainBottomNavigationBarItems>(
+          initialData: _mainBottomNavigationBarBloc.defaultItem,
           stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
           builder: (BuildContext context,
               AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
@@ -48,7 +53,7 @@ class _MainPageState extends State<MainPage> {
                 return Container();
                 break;
               case MainBottomNavigationBarItems.BASKET_PAGE:
-                return Container();
+                return BasketPage();
                 break;
               case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
                 return Container();
