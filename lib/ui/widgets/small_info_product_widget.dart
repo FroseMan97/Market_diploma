@@ -24,13 +24,16 @@ class SmallInfoProductWidget extends StatelessWidget {
             manufacter,
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
-        
           Text(
             name,
           ),
-          SizedBox(height: 10,),
-          Text('$price RUB'),
-          SizedBox(height: 5,),
+          SizedBox(
+            height: 10,
+          ),
+          Text('$price RUB',style: TextStyle(fontWeight: FontWeight.w600),),
+          SizedBox(
+            height: 5,
+          ),
         ],
       ),
     );
