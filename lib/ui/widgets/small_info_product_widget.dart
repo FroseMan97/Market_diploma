@@ -19,6 +19,7 @@ class SmallInfoProductWidget extends StatelessWidget {
           FadeInImage(
             placeholder: MemoryImage(kTransparentImage),
             image: NetworkImage(image),
+            fit: BoxFit.cover,
           ),
           Text(
             manufacter,
@@ -30,7 +31,10 @@ class SmallInfoProductWidget extends StatelessWidget {
           SizedBox(
             height: 10,
           ),
-          Text('$price RUB',style: TextStyle(fontWeight: FontWeight.w600),),
+          Text(
+            '$price RUB',
+            style: TextStyle(fontWeight: FontWeight.w600),
+          ),
           SizedBox(
             height: 5,
           ),

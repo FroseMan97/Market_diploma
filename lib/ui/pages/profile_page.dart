@@ -25,50 +25,52 @@ class _ProfilePageState extends State<ProfilePage> {
 
   _showUIUnAuthorizedUser() {
     return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Icon(
-            Icons.supervised_user_circle,
-            size: 100,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            'Заходите',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            'Посмотреть заказы и\nобновить данные',
-            textAlign: TextAlign.center,
-          ),
-          SizedBox(
-            height: 20,
-          ),
-          MaterialButton(
-            minWidth: 250,
-            child: Text(
-              'Войти',
-              style: TextStyle(color: Colors.white),
+      child: SingleChildScrollView(
+              child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: <Widget>[
+            Icon(
+              Icons.supervised_user_circle,
+              size: 100,
+              ),
+               SizedBox(
+              height: 20,
             ),
-            color: Colors.black,
-            onPressed: () {},
-          ),
-          MaterialButton(
-            minWidth: 250,
-            child: Text(
-              'Регистрация',
-              style: TextStyle(color: Colors.black),
+            Text(
+              'Заходите',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
             ),
-            color: Colors.white,
-            onPressed: () {},
-          )
-        ],
+            SizedBox(
+              height: 20,
+            ),
+            Text(
+              'Посмотреть заказы и\nобновить данные',
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            MaterialButton(
+              minWidth: 250,
+              child: Text(
+                'Войти',
+                style: TextStyle(color: Colors.white),
+              ),
+              color: Colors.black,
+              onPressed: () {},
+            ),
+            MaterialButton(
+              minWidth: 250,
+              child: Text(
+                'Регистрация',
+                style: TextStyle(color: Colors.black),
+              ),
+              color: Colors.white,
+              onPressed: () {},
+            )
+          ],
+        ),
       ),
     );
   }

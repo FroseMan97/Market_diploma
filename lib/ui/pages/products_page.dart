@@ -20,12 +20,6 @@ class ProductsPage extends BasePage {
 class _ProductsPageState extends State<ProductsPage> {
   ProductsListBloc _productsListBloc;
 
-  final List<DropdownMenuItem> _categories = [
-    DropdownMenuItem(
-      child: Text('Одежда'),
-    ),
-  ];
-
   final List<DropdownMenuItem> _sorting = [
     DropdownMenuItem(
       child: Text('По возрастанию'),
@@ -65,13 +59,13 @@ class _ProductsPageState extends State<ProductsPage> {
 
   _buildBody() {
     return Center(
-      child: StreamBuilder(
+      child: StreamBuilder<List<dynamic>>(
         stream: _productsListBloc.getProductsList,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return _showWidgetWithData();
+            return _showWidgetWithData(snapshot.data);
           } else if (snapshot.hasError) {
-            return _showWidgetWithError("poka tak");
+            return _showWidgetWithError(snapshot.error);
           }
           return _showWidgetWithLoading();
         },
@@ -87,16 +81,12 @@ class _ProductsPageState extends State<ProductsPage> {
     return Text(error);
   }
 
-  _showWidgetWithData() {
+  _showWidgetWithData(List<dynamic> items) {
     return ListView(
       children: <Widget>[
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            DropdownButton(
-              items: _categories,
-              onChanged: (it) {},
-            ),
             DropdownButton(
               items: _sorting,
               onChanged: (it) {},
@@ -106,9 +96,10 @@ class _ProductsPageState extends State<ProductsPage> {
         StaggeredGridView.countBuilder(
           primary: false,
           shrinkWrap: true,
-          itemCount: 10,
+          itemCount: items.length,
           crossAxisCount: 4,
           itemBuilder: (context, i) {
+            var item = items[i];
             return SmallInfoProductWidget(
                 "Дутая куртка",
                 "Tommy Hilfiger",

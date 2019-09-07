@@ -9,9 +9,7 @@ class ProductsListBloc extends BaseBloc {
   Stream get getProductsList => _productsListSubject.stream;
   GetProductsByCategoryUsecase _getProductsByCategoryUsecase;
 
-  ProductsListBloc(this._getProductsByCategoryUsecase){
-    fetchProductsByCategory('categoryID');
-  }
+  ProductsListBloc(this._getProductsByCategoryUsecase);
 
   void fetchProductsByCategory(String categoryID) async {
     await _getProductsByCategoryUsecase

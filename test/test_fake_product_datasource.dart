@@ -5,7 +5,7 @@ import 'package:market/datasource/product_datasource.dart';
 void main()async{
   ProductDatasource productDatasource = FakeProductDatasourceImpl();
   ProductModel productByProductID = await productDatasource.getProductByID('productID12');
-  List<ProductModel> productByCategoryID = await productDatasource.getProductsByCategoryID('categoryID11');
+  List<ProductModel> productByCategoryID = await productDatasource.getProductsByCategoryID('categoryID1');
   print(productByProductID);
   print(productByCategoryID);
 }
