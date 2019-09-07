@@ -2,52 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class SmallInfoProductWidget extends StatelessWidget {
-  SmallInfoProductWidget(
-      this.name, this.manufacter, this.description, this.price, this.image,
+  SmallInfoProductWidget(this.name, this.manufacter, this.price, this.image,
       {Key key})
       : super(key: key);
 
   final String name;
   final String manufacter;
-  final String description;
   final double price;
   final String image;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Card(
       child: Column(
         children: <Widget>[
-          Text(name),
-          SizedBox(
-            height: 5,
-          ),
           FadeInImage(
-            image: NetworkImage(image),
             placeholder: MemoryImage(kTransparentImage),
-            fit: BoxFit.cover,
-            height: 150,
-            width: 150,
-          ),
-          SizedBox(
-            height: 5,
-          ),
-          Text(manufacter),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('$price RUB'),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.star),
-              )
-            ],
+            image: NetworkImage(image),
           ),
           Text(
-            description,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 2,
+            manufacter,
+            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
+        
+          Text(
+            name,
+          ),
+          SizedBox(height: 10,),
+          Text('$price RUB'),
+          SizedBox(height: 5,),
         ],
       ),
     );
