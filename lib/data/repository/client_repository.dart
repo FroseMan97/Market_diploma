@@ -11,18 +11,18 @@ class ClientRepositoryImpl implements ClientRepository{
   ClientRepositoryImpl(this._clientDatasource,this._clientMapper);
 
   @override
-  Future<ClientEntity> getClientByID(String clientID) async{
-    return _clientMapper.mapModelToEntity(await _clientDatasource.getClientByID(clientID));
+  Future<ClientEntity> getClientInfoByID(String clientID) async{
+    return _clientMapper.mapModelToEntity(await _clientDatasource.getClientInfoByID(clientID));
   }
 
   @override
-  Future<List<ClientEntity>> getClients() async {
-    return _clientMapper.mapModelsToEntities(await _clientDatasource.getClients());
+  Future<List<ClientEntity>> getClientsInfo() async {
+    return _clientMapper.mapModelsToEntities(await _clientDatasource.getClientsInfo());
   }
 
   @override
-  Future<ClientEntity> getCurrentClient() async {
-    return _clientMapper.mapModelToEntity(await _clientDatasource.getCurrentClient());
+  Future<String> getCurrentClientID() async {
+    return await _clientDatasource.getCurrentClientID();
   }
 
 }

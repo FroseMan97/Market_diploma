@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:market/bloc/mapper/client_viewmodel_mapper.dart';
+import 'package:market/bloc/profile_bloc.dart';
+import 'package:market/bloc/viewmodel/client_viewmodel.dart';
+import 'package:market/data/datasource/fake_client_datasource_impl.dart';
+import 'package:market/data/mapper/client_mapper.dart';
+import 'package:market/data/repository/client_repository.dart';
+import 'package:market/datasource/client_datasource.dart';
+import 'package:market/domain/repository/client_repository.dart';
+import 'package:market/domain/usecase/get_current_client_info_usecase.dart';
 import 'package:market/ui/pages/base_page.dart';
 
 class ProfilePage extends BasePage {
@@ -9,13 +18,35 @@ class ProfilePage extends BasePage {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+
+  ProfileBloc _profileBloc;
+
+  @override
+  void initState() {
+    ClientDatasource _clientDatasource = FakeClientDatasourceImpl();
+    ClientMapper _clientMapper = ClientMapper();
+    ClientRepository _clientRepository = ClientRepositoryImpl(_clientDatasource, _clientMapper);
+    GetCurrentClientInfoUsecase _getCurrentClientInfoUsecase = GetCurrentClientInfoUsecase(_clientRepository);
+    ClientViewModelMapper _clientViewModelMapper = ClientViewModelMapper();
+    _profileBloc = ProfileBloc(_getCurrentClientInfoUsecase, _clientViewModelMapper);
+    _profileBloc.fetchClientInfo();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _profileBloc.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
+    return StreamBuilder<ClientViewModel>(
+      stream: _profileBloc.getClientInfo,
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           if (snapshot.data != null) {
-            return _showUIAuthorizedUser();
+            return _showUIAuthorizedUser(snapshot.data);
           }
         }
         return _showUIUnAuthorizedUser();
@@ -26,15 +57,15 @@ class _ProfilePageState extends State<ProfilePage> {
   _showUIUnAuthorizedUser() {
     return Center(
       child: SingleChildScrollView(
-              child: Column(
+        child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Icon(
               Icons.supervised_user_circle,
               size: 100,
-              ),
-               SizedBox(
+            ),
+            SizedBox(
               height: 20,
             ),
             Text(
@@ -75,7 +106,7 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  _showUIAuthorizedUser() {
+  _showUIAuthorizedUser(ClientViewModel client) {
     return ListView(
       children: <Widget>[
         SizedBox(
@@ -84,7 +115,7 @@ class _ProfilePageState extends State<ProfilePage> {
         CircleAvatar(
           minRadius: 40,
           backgroundColor: Colors.black,
-          child: Text('S L'),
+          child: Text('${client.name[0]} ${client.surname[0]}'),
         ),
         SizedBox(
           height: 10,
@@ -97,12 +128,12 @@ class _ProfilePageState extends State<ProfilePage> {
           height: 5,
         ),
         Text(
-          'Sergey Lazarev',
+          '${client.name} ${client.surname}',
           textAlign: TextAlign.center,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
         SizedBox(
-          height: 30,
+          height: 50,
         ),
         ListTile(
           onTap: () {},
