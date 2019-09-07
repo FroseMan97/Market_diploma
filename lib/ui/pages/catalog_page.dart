@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:market/ui/pages/base_page.dart';
 
-class LikedProductsPage extends BasePage {
+class CatalogPage extends BasePage {
   final String title;
-  LikedProductsPage(this.title, {Key key}) : super(title, key: key);
+  CatalogPage(this.title, {Key key}) : super(title, key: key);
   @override
-  _LikedProductsPageState createState() => _LikedProductsPageState();
+  _CatalogPageState createState() => _CatalogPageState();
 }
 
-class _LikedProductsPageState extends State<LikedProductsPage> {
+class _CatalogPageState extends State<CatalogPage> {
   @override
   Widget build(BuildContext context) {
     return Center(

@@ -12,9 +12,9 @@ class MainBottomNavigationBar extends BottomNavigationBar {
           Icons.storage,
         ),
         title: new Text('')),
-    BottomNavigationBarItem(
+        BottomNavigationBarItem(
         icon: Icon(
-          Icons.camera,
+          Icons.search,
         ),
         title: new Text('')),
     BottomNavigationBarItem(
@@ -22,7 +22,7 @@ class MainBottomNavigationBar extends BottomNavigationBar {
           Icons.shopping_basket,
         ),
         title: new Text('')),
-    BottomNavigationBarItem(
+         BottomNavigationBarItem(
         icon: Icon(
           Icons.star,
         ),
@@ -44,12 +44,4 @@ class MainBottomNavigationBar extends BottomNavigationBar {
             showSelectedLabels: _showSelectedLabels,
             showUnselectedLabels: _showUnselectedLabels,
             onTap: _onTap);
-}
-
-enum MainBottomNavigationBarItems {
-  PRODUCTS_PAGE,
-  BARCODE_SCAN_PAGE,
-  BASKET_PAGE,
-  LIKED_PRODUCTS_PAGE,
-  PROFILE_PAGE
 }
