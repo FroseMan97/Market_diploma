@@ -6,12 +6,12 @@ import 'package:market/data/repository/product_repository.dart';
 import 'package:market/datasource/product_datasource.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
+import 'package:market/ui/pages/base_page.dart';
 import 'package:market/ui/widgets/small_info_product_widget.dart';
 
-class ProductsPage extends StatefulWidget {
-  ProductsPage({Key key}) : super(key: key);
-  static final String title = 'Маркет';
-
+class ProductsPage extends BasePage {
+  final String title;
+  ProductsPage(this.title, {Key key}) : super(title, key: key);
   @override
   _ProductsPageState createState() => _ProductsPageState();
 }

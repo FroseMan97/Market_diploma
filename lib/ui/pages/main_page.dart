@@ -15,6 +15,14 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   MainBottomNavigationBarBloc _mainBottomNavigationBarBloc;
 
+  final bodyList = [
+    ProductsPage('Маркет'),
+    BarcodeScanPage('Поиск товара по штрихкоду'),
+    BasketPage('Корзина'),
+    LikedProductsPage('Понравившиеся товары'),
+    ProfilePage('Профиль')
+  ];
+
   @override
   void initState() {
     _mainBottomNavigationBarBloc = MainBottomNavigationBarBloc();
@@ -30,84 +38,22 @@ class _MainPageState extends State<MainPage> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(
-          title: _buildAppbarTitle(),
-        ),
-        bottomNavigationBar: _buildBottomNavigationBar(),
-        body: _buildBody(),
-      ),
-    );
-  }
-
-  _buildBottomNavigationBar() {
-    return StreamBuilder<MainBottomNavigationBarItems>(
-      initialData: _mainBottomNavigationBarBloc.defaultItem,
-      stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
-      builder: (BuildContext context,
-          AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
-        return MainBottomNavigationBar(snapshot.data.index,
-            _mainBottomNavigationBarBloc.pickMainNavBarItem);
-      },
-    );
-  }
-
-  _buildBody() {
-    return StreamBuilder<MainBottomNavigationBarItems>(
-      initialData: _mainBottomNavigationBarBloc.defaultItem,
-      stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
-      builder: (BuildContext context,
-          AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
-        switch (snapshot.data) {
-          case MainBottomNavigationBarItems.PRODUCTS_PAGE:
-            return ProductsPage();
-            break;
-          case MainBottomNavigationBarItems.BARCODE_SCAN_PAGE:
-            return BarcodeScanPage();
-            break;
-          case MainBottomNavigationBarItems.BASKET_PAGE:
-            return BasketPage();
-            break;
-          case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
-            return LikedProductsPage();
-            break;
-          case MainBottomNavigationBarItems.PROFILE_PAGE:
-            return ProfilePage();
-            break;
-          default:
-            return Container();
-            break;
-        }
-      },
-    );
-  }
-
-  _buildAppbarTitle() {
-    return StreamBuilder<MainBottomNavigationBarItems>(
-      initialData: _mainBottomNavigationBarBloc.defaultItem,
-      stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
-      builder: (BuildContext context,
-          AsyncSnapshot<MainBottomNavigationBarItems> snapshot) {
-        String title = '';
-        switch (snapshot.data) {
-          case MainBottomNavigationBarItems.PRODUCTS_PAGE:
-            title = ProductsPage.title;
-            break;
-          case MainBottomNavigationBarItems.BARCODE_SCAN_PAGE:
-            title = BarcodeScanPage.title;
-            break;
-          case MainBottomNavigationBarItems.BASKET_PAGE:
-            title = BasketPage.title;
-            break;
-          case MainBottomNavigationBarItems.LIKED_PRODUCTS_PAGE:
-            title = LikedProductsPage.title;
-            break;
-          case MainBottomNavigationBarItems.PROFILE_PAGE:
-            title = ProfilePage.title;
-            break;
-        }
-        return Text(title);
-      },
+      child: StreamBuilder<MainBottomNavigationBarItems>(
+          initialData: _mainBottomNavigationBarBloc.defaultItem,
+          stream: _mainBottomNavigationBarBloc.getMainNavBarItem,
+          builder: (context, snapshot) {
+            return Scaffold(
+              appBar: AppBar(
+                title: Text(bodyList[snapshot.data.index].title),
+              ),
+              bottomNavigationBar: MainBottomNavigationBar(snapshot.data.index,
+                  _mainBottomNavigationBarBloc.pickMainNavBarItem),
+              body: IndexedStack(
+                index: snapshot.data.index,
+                children: bodyList,
+              ),
+            );
+          }),
     );
   }
 }

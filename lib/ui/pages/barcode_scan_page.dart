@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:market/ui/pages/base_page.dart';
 
-class BarcodeScanPage extends StatefulWidget {
-  static String title = 'Поиск товара по штрихкоду';
+class BarcodeScanPage extends BasePage {
+  final String title;
+  BarcodeScanPage(this.title, {Key key}) : super(title, key: key);
   @override
   _BarcodeScanPageState createState() => _BarcodeScanPageState();
 }

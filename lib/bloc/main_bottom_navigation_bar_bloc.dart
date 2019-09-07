@@ -34,4 +34,12 @@ class MainBottomNavigationBarBloc implements BaseBloc {
   void dispose() {
     _mainNavBarSubject.close();
   }
+
+  @override
+  // TODO: implement errorSink
+  Sink<String> get errorSink => null;
+
+  @override
+  // TODO: implement errorStream
+  Stream<String> get errorStream => null;
 }

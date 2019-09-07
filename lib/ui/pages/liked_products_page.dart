@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:market/ui/pages/base_page.dart';
 
-class LikedProductsPage extends StatefulWidget {
-  static String title = 'Понравившиеся товары';
+class LikedProductsPage extends BasePage {
+  final String title;
+  LikedProductsPage(this.title, {Key key}) : super(title, key: key);
   @override
   _LikedProductsPageState createState() => _LikedProductsPageState();
 }

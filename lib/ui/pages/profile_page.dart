@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:market/ui/pages/base_page.dart';
 
-class ProfilePage extends StatefulWidget {
-  static String title = 'Профиль';
+class ProfilePage extends BasePage {
+  final String title;
+  ProfilePage(this.title, {Key key}) : super(title, key: key);
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -11,7 +13,7 @@ class _ProfilePageState extends State<ProfilePage> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Text('Liked products page'),
+        child: Text('Profile'),
       ),
     );
   }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:market/ui/pages/base_page.dart';
 
-class BasketPage extends StatefulWidget {
-  static final title = 'Корзина';
+class BasketPage extends BasePage {
+  final String title;
+  BasketPage(this.title, {Key key}) : super(title, key: key);
   @override
   _BasketPageState createState() => _BasketPageState();
 }
