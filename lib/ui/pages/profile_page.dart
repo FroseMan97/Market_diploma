@@ -8,7 +8,8 @@ import 'package:market/data/repository/client_repository.dart';
 import 'package:market/datasource/client_datasource.dart';
 import 'package:market/domain/repository/client_repository.dart';
 import 'package:market/domain/usecase/get_current_client_info_usecase.dart';
-import 'package:market/ui/pages/base_page.dart';
+import 'package:market/ui/pages/base/base_page.dart';
+import 'package:market/ui/widgets/error_message_widget.dart';
 
 class ProfilePage extends BasePage {
   final String title;
@@ -18,7 +19,6 @@ class ProfilePage extends BasePage {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-
   ProfileBloc _profileBloc;
 
   @override
@@ -26,10 +26,13 @@ class _ProfilePageState extends State<ProfilePage> {
     //TODO DI
     ClientDatasource _clientDatasource = FakeClientDatasourceImpl();
     ClientMapper _clientMapper = ClientMapper();
-    ClientRepository _clientRepository = ClientRepositoryImpl(_clientDatasource, _clientMapper);
-    GetCurrentClientInfoUsecase _getCurrentClientInfoUsecase = GetCurrentClientInfoUsecase(_clientRepository);
+    ClientRepository _clientRepository =
+        ClientRepositoryImpl(_clientDatasource, _clientMapper);
+    GetCurrentClientInfoUsecase _getCurrentClientInfoUsecase =
+        GetCurrentClientInfoUsecase(_clientRepository);
     ClientViewModelMapper _clientViewModelMapper = ClientViewModelMapper();
-    _profileBloc = ProfileBloc(_getCurrentClientInfoUsecase, _clientViewModelMapper);
+    _profileBloc =
+        ProfileBloc(_getCurrentClientInfoUsecase, _clientViewModelMapper);
     _profileBloc.fetchClientInfo();
     super.initState();
   }
@@ -48,9 +51,13 @@ class _ProfilePageState extends State<ProfilePage> {
         if (snapshot.hasData) {
           if (snapshot.data != null) {
             return _showUIAuthorizedUser(snapshot.data);
+          } else {
+            return _showUIUnAuthorizedUser();
           }
+        } else if (snapshot.hasError) {
+          return ErrorMessageWidget(snapshot.error);
         }
-        return _showUIUnAuthorizedUser();
+        return Container();
       },
     );
   }

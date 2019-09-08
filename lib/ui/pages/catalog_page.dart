@@ -8,9 +8,11 @@ import 'package:market/data/repository/category_repository.dart';
 import 'package:market/datasource/category_datasource.dart';
 import 'package:market/domain/repository/category_repository.dart';
 import 'package:market/domain/usecase/get_categories_usecase.dart';
-import 'package:market/ui/pages/base_page.dart';
+import 'package:market/ui/pages/base/base_page.dart';
 import 'package:market/ui/pages/products_page.dart';
-import 'package:market/ui/widgets/list_tile_with_avatar_widget.dart';
+import 'package:market/ui/widgets/error_message_widget.dart';
+import 'package:market/ui/widgets/listtile_with_avatar_widget.dart';
+import 'package:market/ui/widgets/loading_widget.dart';
 
 class CatalogPage extends BasePage {
   final String title;
@@ -50,8 +52,10 @@ class _CatalogPageState extends State<CatalogPage> {
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 return _showData(snapshot.data);
-              } else if (snapshot.hasError) {}
-              return Center(child: CircularProgressIndicator());
+              } else if (snapshot.hasError) {
+                return ErrorMessageWidget(snapshot.error);
+              }
+              return LoadingWidget();
             }));
   }
 

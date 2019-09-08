@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:market/bloc/main_bottom_navigation_bar_bloc.dart';
-import 'package:market/ui/pages/barcode_scan_page.dart';
 import 'package:market/ui/pages/basket_page.dart';
 import 'package:market/ui/pages/catalog_page.dart';
 import 'package:market/ui/pages/home_page.dart';
 import 'package:market/ui/pages/liked_products_page.dart';
-import 'package:market/ui/pages/products_page.dart';
 import 'package:market/ui/pages/profile_page.dart';
 import 'package:market/ui/widgets/main_bottom_navigation_bar_widget.dart';
 

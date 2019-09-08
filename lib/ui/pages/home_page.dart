@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:market/ui/pages/base_page.dart';
+import 'package:market/ui/pages/base/base_page.dart';
 
 class HomePage extends BasePage {
   final String title;

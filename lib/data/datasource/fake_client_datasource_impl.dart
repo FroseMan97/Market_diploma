@@ -3,7 +3,7 @@ import 'package:market/datasource/client_datasource.dart';
 
 class FakeClientDatasourceImpl implements ClientDatasource{
 
-  List<ClientModel> clientList = [
+  List<ClientModel> _clientList = [
     ClientModel('clientID1', 'email1', 'phone1', 'Sergey', 'Lazarev'),
     ClientModel('clientID2', 'email2', 'phone2', 'name2', 'surname2'),
     ClientModel('clientID3', 'email3', 'phone3', 'name3', 'surname3'),
@@ -12,17 +12,17 @@ class FakeClientDatasourceImpl implements ClientDatasource{
 
   @override
   Future<ClientModel> getClientInfoByID(String clientID) async {
-    return clientList.firstWhere((test) => test.getClientID == clientID);
+    return _clientList.firstWhere((test) => test.getClientID == clientID);
   }
 
   @override
   Future<List<ClientModel>> getClientsInfo() async {
-    return clientList;
+    return _clientList;
   }
 
   @override
   Future<String> getCurrentClientID() async{
-    return clientList.first.getClientID;
+    return _clientList.first.getClientID;
   }
 
 }
