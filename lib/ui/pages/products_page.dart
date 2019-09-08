@@ -87,6 +87,9 @@ class _ProductsPageState extends State<ProductsPage> {
   }
 
   _showWidgetWithData(List<dynamic> items) {
+    if(items.isEmpty){
+      return Center(child: Text('Пусто('),);
+    }
     return ListView(
       children: <Widget>[
         Row(

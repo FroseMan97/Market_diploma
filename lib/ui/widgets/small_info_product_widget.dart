@@ -20,6 +20,7 @@ class SmallInfoProductWidget extends StatelessWidget {
             placeholder: MemoryImage(kTransparentImage),
             image: NetworkImage(image),
             fit: BoxFit.cover,
+            height: 250,
           ),
           Text(
             manufacter,
