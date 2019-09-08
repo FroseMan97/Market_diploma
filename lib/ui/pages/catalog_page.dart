@@ -12,9 +12,7 @@ class _CatalogPageState extends State<CatalogPage> {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Container(
-        child: Text('Catalog page'),
-      ),
+      child: ListView()
     );
   }
 }

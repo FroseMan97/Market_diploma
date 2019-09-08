@@ -3,10 +3,10 @@ import 'package:market/datasource/category_datasource.dart';
 
 class FakeCategoryDatasourceImpl implements CategoryDatasource {
   List<CategoryModel> categoryList = [
-    CategoryModel('categoryID1', 'name1'),
-    CategoryModel('categoryID2', 'name2'),
-    CategoryModel('categoryID3', 'name3'),
-    CategoryModel('categoryID4', 'name4'),
+    CategoryModel('categoryID1', 'name1',''),
+    CategoryModel('categoryID2', 'name2',''),
+    CategoryModel('categoryID3', 'name3',''),
+    CategoryModel('categoryID4', 'name4',''),
   ];
 
   @override
