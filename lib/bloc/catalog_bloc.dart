@@ -11,7 +11,7 @@ class CatalogBloc extends BaseBloc {
   GetCategoriesUsecase _getCategoriesUsecase;
   CategoryViewModelMapper _categoryViewModelMapper;
 
-  CatalogBloc(this._getCategoriesUsecase, this._categoryViewModelMapper);
+  CatalogBloc(this._getCategoriesUsecase, this._categoryViewModelMapper){fetchCategories();}
 
   void fetchCategories() async {
     await _getCategoriesUsecase

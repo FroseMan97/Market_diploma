@@ -11,7 +11,6 @@ import 'package:market/domain/usecase/get_categories_usecase.dart';
 import 'package:market/ui/pages/base_page.dart';
 import 'package:market/ui/pages/products_page.dart';
 import 'package:market/ui/widgets/list_tile_with_avatar_widget.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 class CatalogPage extends BasePage {
   final String title;
@@ -34,8 +33,13 @@ class _CatalogPageState extends State<CatalogPage> {
     CategoryViewModelMapper _categoryViewModelMapper =
         CategoryViewModelMapper();
     _catalogBloc = CatalogBloc(_getCategoriesUsecase, _categoryViewModelMapper);
-    _catalogBloc.fetchCategories();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _catalogBloc.dispose();
+    super.dispose();
   }
 
   @override

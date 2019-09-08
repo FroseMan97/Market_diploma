@@ -5,6 +5,7 @@ import 'package:market/data/datasource/fake_product_datasource_impl.dart';
 import 'package:market/data/mapper/product_mapper.dart';
 import 'package:market/data/repository/product_repository.dart';
 import 'package:market/datasource/product_datasource.dart';
+import 'package:market/domain/entity/product_entity.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
 import 'package:market/ui/pages/base_page.dart';
@@ -12,7 +13,7 @@ import 'package:market/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends BasePage {
   final String title;
-  final String _categoryID; //Верно ли?
+  final String _categoryID; 
   ProductsPage(this.title, this._categoryID, {Key key}) : super(title, key: key);
   @override
   _ProductsPageState createState() => _ProductsPageState();
@@ -59,17 +60,20 @@ class _ProductsPageState extends State<ProductsPage> {
   }
 
   _buildBody() {
-    return Center(
-      child: StreamBuilder<List<dynamic>>(
-        stream: _productsListBloc.getProductsList,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return _showWidgetWithData(snapshot.data);
-          } else if (snapshot.hasError) {
-            return _showWidgetWithError(snapshot.error);
-          }
-          return _showWidgetWithLoading();
-        },
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.title),),
+          body: Center(
+        child: StreamBuilder<List<ProductEntity>>(
+          stream: _productsListBloc.getProductsList,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return _showWidgetWithData(snapshot.data);
+            } else if (snapshot.hasError) {
+              return _showWidgetWithError(snapshot.error);
+            }
+            return _showWidgetWithLoading();
+          },
+        ),
       ),
     );
   }
