@@ -21,7 +21,7 @@ void main() async{
   List<ProductEntity> list1 = await productRepository.getProducts();
   List<ProductEntity> list2 = await productRepository.getProductsByCategoryID('categoryID2');
   ProductEntity product = await productRepository.getProductByID('productID1');
-  ManufactureEntity manufacture = await manufactureRepository.getManufactureByID(product.manufactureID);
+  ManufactureEntity manufacture = await manufactureRepository.getManufactureByID(product.getManufactureID);
   print(list1);
   print(list2);
 

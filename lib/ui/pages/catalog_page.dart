@@ -9,6 +9,9 @@ import 'package:market/datasource/category_datasource.dart';
 import 'package:market/domain/repository/category_repository.dart';
 import 'package:market/domain/usecase/get_categories_usecase.dart';
 import 'package:market/ui/pages/base_page.dart';
+import 'package:market/ui/pages/products_page.dart';
+import 'package:market/ui/widgets/list_tile_with_avatar_widget.dart';
+import 'package:transparent_image/transparent_image.dart';
 
 class CatalogPage extends BasePage {
   final String title;
@@ -53,13 +56,17 @@ class _CatalogPageState extends State<CatalogPage> {
       itemCount: data.length,
       itemBuilder: (context, i) {
         var item = data[i];
-        return ListTile(
-          title: Text(item.getName),
-          trailing: CircleAvatar(
-            backgroundImage: NetworkImage(item.getImageURL),
-          ),
-        );
+        return ListTileWithAvatarWidget(item.getName, item.getImageURL,
+            () => _navigateToProductsList(item.getName, item.getID));
       },
+    );
+  }
+
+  void _navigateToProductsList(String categoryName, String categoryID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => ProductsPage(categoryName, categoryID)),
     );
   }
 }

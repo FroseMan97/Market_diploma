@@ -13,7 +13,7 @@ class _LikedProductsPageState extends State<LikedProductsPage> {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        child: Text('Catalog page'),
+        child: Text('Liked products page'),
       ),
     );
   }

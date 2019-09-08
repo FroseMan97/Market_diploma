@@ -3,6 +3,7 @@ import 'package:market/bloc/main_bottom_navigation_bar_bloc.dart';
 import 'package:market/ui/pages/barcode_scan_page.dart';
 import 'package:market/ui/pages/basket_page.dart';
 import 'package:market/ui/pages/catalog_page.dart';
+import 'package:market/ui/pages/home_page.dart';
 import 'package:market/ui/pages/liked_products_page.dart';
 import 'package:market/ui/pages/products_page.dart';
 import 'package:market/ui/pages/profile_page.dart';
@@ -17,7 +18,7 @@ class _MainPageState extends State<MainPage> {
   MainBottomNavigationBarBloc _mainBottomNavigationBarBloc;
 
   final bodyList = [
-    ProductsPage('Подборка'),
+    HomePage('Подборка'),
     CatalogPage('Каталог'),
     BasketPage('Корзина'),
     LikedProductsPage('Избранное'),

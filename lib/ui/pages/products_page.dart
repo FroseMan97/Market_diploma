@@ -12,7 +12,8 @@ import 'package:market/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends BasePage {
   final String title;
-  ProductsPage(this.title, {Key key}) : super(title, key: key);
+  final String _categoryID; //Верно ли?
+  ProductsPage(this.title, this._categoryID, {Key key}) : super(title, key: key);
   @override
   _ProductsPageState createState() => _ProductsPageState();
 }
@@ -39,7 +40,7 @@ class _ProductsPageState extends State<ProductsPage> {
     GetProductsByCategoryUsecase _getProductsByCategoryUsecase =
         GetProductsByCategoryUsecase(_productRepository);
     _productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
-    _productsListBloc.fetchProductsByCategory('categoryID1');
+    _productsListBloc.fetchProductsByCategory(widget._categoryID);
     ////
     super.initState();
   }

@@ -1,11 +1,11 @@
 import 'package:market/bloc/base/base_bloc.dart';
 import 'package:market/bloc/mapper/category_viewmodel_mapper.dart';
-import 'package:market/domain/entity/category_entity.dart';
+import 'package:market/bloc/viewmodel/category_viewmodel.dart';
 import 'package:market/domain/usecase/get_categories_usecase.dart';
 import 'package:rxdart/subjects.dart';
 
 class CatalogBloc extends BaseBloc {
-  BehaviorSubject _catalogSubject = BehaviorSubject<List<CategoryEntity>>();
+  BehaviorSubject _catalogSubject = BehaviorSubject<List<CategoryViewModel>>();
   Stream get getCategories => _catalogSubject.stream;
 
   GetCategoriesUsecase _getCategoriesUsecase;
