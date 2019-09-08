@@ -11,7 +11,7 @@ class FakeCategoryDatasourceImpl implements CategoryDatasource {
 
   @override
   Future<CategoryModel> getCategoryByID(String categoryID) async {
-    return categoryList.firstWhere((test) => test.categoryID == categoryID);
+    return categoryList.firstWhere((test) => test.getCategoryID == categoryID);
   }
 
   @override

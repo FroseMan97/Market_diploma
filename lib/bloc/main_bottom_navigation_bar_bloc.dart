@@ -16,6 +16,6 @@ class MainBottomNavigationBarBloc extends BaseBloc {
   @override
   void dispose() {
     _mainNavBarSubject.close();
-    super.dispose();
+
   }
 }

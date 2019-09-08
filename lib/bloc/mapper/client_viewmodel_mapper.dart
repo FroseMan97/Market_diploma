@@ -1,12 +1,14 @@
 import 'package:market/bloc/viewmodel/client_viewmodel.dart';
 import 'package:market/domain/entity/client_entity.dart';
 
+//TODO map null
+
 class ClientViewModelMapper {
   ClientViewModel mapEntityToViewModel(ClientEntity clientEntity) {
     ClientViewModel clientViewModel;
     if(clientEntity !=null){
-      clientViewModel=ClientViewModel(clientEntity.clientID, clientEntity.name,
-        clientEntity.surname, clientEntity.email, clientEntity.phone);
+      clientViewModel=ClientViewModel(clientEntity.getClientID, clientEntity.getName,
+        clientEntity.getSurname, clientEntity.getEmail, clientEntity.getPhone);
     }
     return clientViewModel;
   }

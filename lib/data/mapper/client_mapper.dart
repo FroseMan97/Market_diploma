@@ -5,8 +5,8 @@ class ClientMapper {
   ClientModel mapEntityToModel(ClientEntity clientEntity) {
     ClientModel clientModel;
     if (clientEntity != null) {
-      clientModel = ClientModel(clientEntity.clientID, clientEntity.email,
-          clientEntity.phone, clientEntity.name, clientEntity.surname);
+      clientModel = ClientModel(clientEntity.getClientID, clientEntity.getEmail,
+          clientEntity.getPhone, clientEntity.getName, clientEntity.getSurname);
     }
     return clientModel;
   }
@@ -14,8 +14,8 @@ class ClientMapper {
   ClientEntity mapModelToEntity(ClientModel clientModel) {
     ClientEntity clientEntity;
     if (clientModel != null) {
-      clientEntity = ClientEntity(clientModel.clientID, clientModel.email,
-          clientModel.phone, clientModel.name, clientModel.surname);
+      clientEntity = ClientEntity(clientModel.getClientID, clientModel.getEmail,
+          clientModel.getPhone, clientModel.getName, clientModel.getSurname);
     }
     return clientEntity;
   }

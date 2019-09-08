@@ -6,13 +6,13 @@ class ProductMapper {
     ProductEntity productEntity;
     if (productModel != null) {
       productEntity = ProductEntity(
-          productModel.productID,
-          productModel.manufactureID,
-          productModel.categoryID,
-          productModel.name,
-          productModel.description,
-          productModel.imageURL,
-          productModel.price);
+          productModel.getProductID,
+          productModel.getManufactureID,
+          productModel.getCategoryID,
+          productModel.getName,
+          productModel.getDescription,
+          productModel.getImagesURL,
+          productModel.getPrice);
     }
     return productEntity;
   }
@@ -21,13 +21,13 @@ class ProductMapper {
     ProductModel productModel;
     if (productEntity != null) {
       productModel = ProductModel(
-          productEntity.productID,
-          productEntity.manufactureID,
-          productEntity.categoryID,
-          productEntity.name,
-          productEntity.description,
-          productEntity.imageURL,
-          productEntity.price);
+          productEntity.getProductID,
+          productEntity.getManufactureID,
+          productEntity.getCategoryID,
+          productEntity.getName,
+          productEntity.getDescription,
+          productEntity.getImagesURL,
+          productEntity.getPrice);
     }
     return productModel;
   }

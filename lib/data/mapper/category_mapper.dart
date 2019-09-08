@@ -5,7 +5,7 @@ class CategoryMapper{
   CategoryModel mapEntityToModel(CategoryEntity categoryEntity){
     CategoryModel categoryModel;
     if(categoryEntity != null){
-      categoryModel = CategoryModel(categoryEntity.categoryID, categoryEntity.name);
+      categoryModel = CategoryModel(categoryEntity.getCategoryID, categoryEntity.getName);
     }
     return categoryModel;
   }
@@ -13,7 +13,7 @@ class CategoryMapper{
   CategoryEntity mapModelToEntity(CategoryModel categoryModel){
     CategoryEntity categoryEntity;
     if(categoryModel != null){
-      categoryEntity = CategoryEntity(categoryModel.categoryID, categoryModel.name);
+      categoryEntity = CategoryEntity(categoryModel.getCategoryID, categoryModel.getName);
     }
     return categoryEntity;
   }

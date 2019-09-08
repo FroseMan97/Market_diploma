@@ -23,6 +23,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   void initState() {
+    //TODO DI
     ClientDatasource _clientDatasource = FakeClientDatasourceImpl();
     ClientMapper _clientMapper = ClientMapper();
     ClientRepository _clientRepository = ClientRepositoryImpl(_clientDatasource, _clientMapper);
@@ -133,7 +134,7 @@ class _ProfilePageState extends State<ProfilePage> {
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),
         SizedBox(
-          height: 50,
+          height: 30,
         ),
         ListTile(
           onTap: () {},

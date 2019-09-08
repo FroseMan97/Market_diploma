@@ -12,7 +12,7 @@ class FakeManufactureDatasourceImpl implements ManufactureDatasource{
 
   @override
   Future<ManufactureModel> getManufactureByID(String manufactureID) async {
-    return manufactureList.firstWhere((test) => test.manufactureID == manufactureID);
+    return manufactureList.firstWhere((test) => test.getManufactureID == manufactureID);
   }
 
   @override

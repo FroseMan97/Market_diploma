@@ -21,6 +21,6 @@ class ProductsListBloc extends BaseBloc {
   @override
   void dispose() {
     _productsListSubject.close();
-    super.dispose();
+  
   }
 }

@@ -1,3 +1,3 @@
 abstract class BaseBloc {
-  void dispose() {}
+  void dispose();
 }
