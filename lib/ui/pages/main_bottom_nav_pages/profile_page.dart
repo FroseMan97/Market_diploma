@@ -123,7 +123,7 @@ class _ProfilePageState extends State<ProfilePage> {
         CircleAvatar(
           minRadius: 40,
           backgroundColor: Colors.black,
-          child: Text('${client.name[0]} ${client.surname[0]}'),
+          child: Text('${client.getName[0]} ${client.getSurname[0]}'),
         ),
         SizedBox(
           height: 10,
@@ -136,7 +136,7 @@ class _ProfilePageState extends State<ProfilePage> {
           height: 5,
         ),
         Text(
-          '${client.name} ${client.surname}',
+          '${client.getName} ${client.getSurname}',
           textAlign: TextAlign.center,
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
         ),

@@ -19,7 +19,7 @@ class CatalogBloc extends BaseBloc {
         .timeout(Duration(seconds: 5))
         .then((data) => _catalogSubject
             .add(_categoryViewModelMapper.mapEntitiesToViewModels(data)))
-        .catchError((error) => _catalogSubject.addError(error));
+        .catchError((error) => _catalogSubject.addError(error.toString()));
   }
 
   @override

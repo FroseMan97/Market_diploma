@@ -17,7 +17,7 @@ class ProfileBloc extends BaseBloc {
      await _getCurrentClientInfoUsecase.execute()
      .timeout(Duration(seconds: 5))
      .then((data)=>_profileSubject.add(_clientViewModelMapper.mapEntityToViewModel(data)))
-     .catchError((error)=>_profileSubject.addError(error));
+     .catchError((error)=>_profileSubject.addError(error.toString()));
   }
 
   @override

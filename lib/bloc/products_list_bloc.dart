@@ -16,7 +16,7 @@ class ProductsListBloc extends BaseBloc {
     await _getProductsByCategoryUsecase
         .execute(categoryID)
         .then((data) => _productsListSubject.add(data))
-        .catchError((error) => _productsListSubject.addError(error));
+        .catchError((error) => _productsListSubject.addError(error.toString()));
   }
 
   @override
