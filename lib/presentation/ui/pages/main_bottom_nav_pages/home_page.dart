@@ -1,6 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:market/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/pages/base/base_page.dart';
 
 class HomePage extends BasePage {
   final String title;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:market/bloc/main_bottom_navigation_bar_bloc.dart';
-import 'package:market/ui/pages/main_bottom_nav_pages/basket_page.dart';
-import 'package:market/ui/pages/main_bottom_nav_pages/catalog_page.dart';
-import 'package:market/ui/pages/main_bottom_nav_pages/home_page.dart';
-import 'package:market/ui/pages/main_bottom_nav_pages/liked_products_page.dart';
-import 'package:market/ui/pages/main_bottom_nav_pages/profile_page.dart';
-import 'package:market/ui/widgets/main_bottom_navigation_bar_widget.dart';
+import 'package:market/presentation/bloc/main_bottom_navigation_bar_bloc.dart';
+import 'package:market/presentation/ui/pages/main_bottom_nav_pages/basket_page.dart';
+import 'package:market/presentation/ui/pages/main_bottom_nav_pages/catalog_page.dart';
+import 'package:market/presentation/ui/pages/main_bottom_nav_pages/home_page.dart';
+import 'package:market/presentation/ui/pages/main_bottom_nav_pages/liked_products_page.dart';
+import 'package:market/presentation/ui/pages/main_bottom_nav_pages/profile_page.dart';
+import 'package:market/presentation/ui/widgets/main_bottom_navigation_bar_widget.dart';
 
 class MainPage extends StatefulWidget {
   @override

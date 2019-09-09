@@ -1,19 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:market/bloc/catalog_bloc.dart';
-import 'package:market/bloc/mapper/category_viewmodel_mapper.dart';
-import 'package:market/bloc/viewmodel/category_viewmodel.dart';
 import 'package:market/data/datasource/fake_category_datasource_impl.dart';
 import 'package:market/data/mapper/category_mapper.dart';
 import 'package:market/data/repository/category_repository.dart';
 import 'package:market/datasource/category_datasource.dart';
 import 'package:market/domain/repository/category_repository.dart';
 import 'package:market/domain/usecase/get_categories_usecase.dart';
-import 'package:market/ui/pages/base/base_page.dart';
-import 'package:market/ui/pages/products_page.dart';
-import 'package:market/ui/widgets/error_message_widget.dart';
-import 'package:market/ui/widgets/listtile_with_avatar_widget.dart';
-import 'package:market/ui/widgets/loading_widget.dart';
+import 'package:market/presentation/bloc/catalog_bloc.dart';
+import 'package:market/presentation/mapper/category_viewmodel_mapper.dart';
+import 'package:market/presentation/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/pages/products_page.dart';
+import 'package:market/presentation/ui/widgets/error_message_widget.dart';
+import 'package:market/presentation/ui/widgets/listtile_with_avatar_widget.dart';
+import 'package:market/presentation/ui/widgets/loading_widget.dart';
+import 'package:market/presentation/viewmodel/category_viewmodel.dart';
 
 class CatalogPage extends BasePage {
   final String title;

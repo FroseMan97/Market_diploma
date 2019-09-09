@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:market/bloc/mapper/client_viewmodel_mapper.dart';
-import 'package:market/bloc/profile_bloc.dart';
-import 'package:market/bloc/viewmodel/client_viewmodel.dart';
+import 'package:market/presentation/mapper/client_viewmodel_mapper.dart';
+import 'package:market/presentation/bloc/profile_bloc.dart';
+import 'package:market/presentation/viewmodel/client_viewmodel.dart';
 import 'package:market/data/datasource/fake_client_datasource_impl.dart';
 import 'package:market/data/mapper/client_mapper.dart';
 import 'package:market/data/repository/client_repository.dart';
 import 'package:market/datasource/client_datasource.dart';
 import 'package:market/domain/repository/client_repository.dart';
 import 'package:market/domain/usecase/get_current_client_info_usecase.dart';
-import 'package:market/ui/pages/base/base_page.dart';
-import 'package:market/ui/widgets/error_message_widget.dart';
+import 'package:market/presentation/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 
 class ProfilePage extends BasePage {
   final String title;

@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:market/bloc/base/base_bloc.dart';
+import 'package:market/presentation/bloc/base/base_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 class MainBottomNavigationBarBloc extends BaseBloc {

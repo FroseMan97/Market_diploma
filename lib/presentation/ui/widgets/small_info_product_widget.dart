@@ -17,13 +17,10 @@ class SmallInfoProductWidget extends StatelessWidget {
     return Card(
       child: Column(
         children: <Widget>[
-          Container(
-            height: 250,
-            child: CachedNetworkImage(
-              imageUrl: image,
-              placeholder: (context, url) => Image.memory(kTransparentImage),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-            ),
+          CachedNetworkImage(
+            imageUrl: image,
+            placeholder: (context, url) => Image.memory(kTransparentImage),
+            errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           Text(
             manufacter,

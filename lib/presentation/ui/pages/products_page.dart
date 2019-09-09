@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:market/bloc/products_list_bloc.dart';
+import 'package:market/presentation/bloc/products_list_bloc.dart';
 import 'package:market/data/datasource/fake_product_datasource_impl.dart';
 import 'package:market/data/mapper/product_mapper.dart';
 import 'package:market/data/repository/product_repository.dart';
@@ -8,10 +8,10 @@ import 'package:market/datasource/product_datasource.dart';
 import 'package:market/domain/entity/product_entity.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
-import 'package:market/ui/pages/base/base_page.dart';
-import 'package:market/ui/widgets/error_message_widget.dart';
-import 'package:market/ui/widgets/loading_widget.dart';
-import 'package:market/ui/widgets/small_info_product_widget.dart';
+import 'package:market/presentation/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/widgets/error_message_widget.dart';
+import 'package:market/presentation/ui/widgets/loading_widget.dart';
+import 'package:market/presentation/ui/widgets/small_info_product_widget.dart';
 
 class ProductsPage extends BasePage {
   final String title;
@@ -109,11 +109,14 @@ class _ProductsPageState extends State<ProductsPage> {
           crossAxisCount: 4,
           itemBuilder: (context, i) {
             var item = items[i];
-            return SmallInfoProductWidget(
-                "Дутая куртка",
-                "Tommy Hilfiger",
-                14320,
-                'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg');
+            return Container(
+              
+              child: SmallInfoProductWidget(
+                  "Дутая куртка",
+                  "Tommy Hilfiger",
+                  14320,
+                  'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg'),
+            );
           },
           staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
         ),

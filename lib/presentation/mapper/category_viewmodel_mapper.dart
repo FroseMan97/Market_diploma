@@ -1,4 +1,4 @@
-import 'package:market/bloc/viewmodel/category_viewmodel.dart';
+import 'package:market/presentation/viewmodel/category_viewmodel.dart';
 import 'package:market/domain/entity/category_entity.dart';
 
 class CategoryViewModelMapper {
