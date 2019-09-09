@@ -51,10 +51,10 @@ class _CatalogPageState extends State<CatalogPage> {
         child: StreamBuilder<List<CategoryViewModel>>(
             stream: _catalogBloc.getCategories,
             builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return _showData(snapshot.data);
-              } else if (snapshot.hasError) {
+              if (snapshot.hasError) {
                 return ErrorMessageWidget(snapshot.error);
+              } else if (snapshot.hasData) {
+                return _showData(snapshot.data);
               }
               return LoadingWidget();
             }));

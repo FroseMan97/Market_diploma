@@ -21,4 +21,9 @@ class ManufactureRepositoryImpl implements ManufactureRepository {
     return _manufactureMapper.mapModelsToEntities(
         await _manufactureDatasource.getManufactures());
   }
+
+  @override
+  Future<List<ManufactureEntity>> getRandomManufactures(int quantity) async {
+    return _manufactureMapper.mapModelsToEntities(await _manufactureDatasource.getRandomManufactures(quantity));
+  }
 }

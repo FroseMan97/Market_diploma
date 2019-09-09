@@ -5,8 +5,11 @@ class ManufactureMapper {
   ManufactureModel mapEntityToModel(ManufactureEntity manufactureEntity) {
     ManufactureModel manufactureModel;
     if (manufactureEntity != null) {
-      manufactureModel = ManufactureModel(manufactureEntity.getManufactureID,
-          manufactureEntity.getName, manufactureEntity.getAddress);
+      manufactureModel = ManufactureModel(
+          manufactureEntity.getManufactureID,
+          manufactureEntity.getName,
+          manufactureEntity.getCountry,
+          manufactureEntity.getImageURL);
     }
     return manufactureModel;
   }
@@ -14,8 +17,11 @@ class ManufactureMapper {
   ManufactureEntity mapModelToEntity(ManufactureModel manufactureModel) {
     ManufactureEntity manufactureEntity;
     if (manufactureModel != null) {
-      manufactureEntity = ManufactureEntity(manufactureModel.getManufactureID,
-          manufactureModel.getName, manufactureModel.getAddress);
+      manufactureEntity = ManufactureEntity(
+          manufactureModel.getManufactureID,
+          manufactureModel.getName,
+          manufactureModel.getCountry,
+          manufactureModel.getImageURL);
     }
     return manufactureEntity;
   }

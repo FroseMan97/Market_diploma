@@ -71,10 +71,10 @@ class _ProductsPageState extends State<ProductsPage> {
         child: StreamBuilder<List<ProductEntity>>(
           stream: _productsListBloc.getProductsList,
           builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              return _showWidgetWithData(snapshot.data);
-            } else if (snapshot.hasError) {
+            if (snapshot.hasError) {
               return ErrorMessageWidget(snapshot.error);
+            }else if (snapshot.hasData) {
+              return _showWidgetWithData(snapshot.data);
             }
             return LoadingWidget();
           },
@@ -83,12 +83,10 @@ class _ProductsPageState extends State<ProductsPage> {
     );
   }
 
-
-
   _showWidgetWithData(List<dynamic> items) {
     if (items.isEmpty) {
       return Center(
-        child: Text('Пусто('),
+        child: Text('Пусто'),
       );
     }
     return ListView(
@@ -110,7 +108,6 @@ class _ProductsPageState extends State<ProductsPage> {
           itemBuilder: (context, i) {
             var item = items[i];
             return Container(
-              
               child: SmallInfoProductWidget(
                   "Дутая куртка",
                   "Tommy Hilfiger",

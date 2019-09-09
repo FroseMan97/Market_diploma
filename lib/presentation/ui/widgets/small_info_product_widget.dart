@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class SmallInfoProductWidget extends StatelessWidget {
@@ -17,10 +18,8 @@ class SmallInfoProductWidget extends StatelessWidget {
     return Card(
       child: Column(
         children: <Widget>[
-          CachedNetworkImage(
-            imageUrl: image,
-            placeholder: (context, url) => Image.memory(kTransparentImage),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+          CachedNetworkImageWidget(
+            image,
           ),
           Text(
             manufacter,

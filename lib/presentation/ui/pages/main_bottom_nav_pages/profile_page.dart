@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:market/presentation/mapper/client_viewmodel_mapper.dart';
 import 'package:market/presentation/bloc/profile_bloc.dart';
+import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/viewmodel/client_viewmodel.dart';
 import 'package:market/data/datasource/impl/fake_client_datasource_impl.dart';
 import 'package:market/data/mapper/client_mapper.dart';
@@ -48,16 +49,16 @@ class _ProfilePageState extends State<ProfilePage> {
     return StreamBuilder<ClientViewModel>(
       stream: _profileBloc.getClientInfo,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
+        if (snapshot.hasError) {
+          return ErrorMessageWidget(snapshot.error);
+        } else if (snapshot.hasData) {
           if (snapshot.data != null) {
             return _showUIAuthorizedUser(snapshot.data);
           } else {
             return _showUIUnAuthorizedUser();
           }
-        } else if (snapshot.hasError) {
-          return ErrorMessageWidget(snapshot.error);
         }
-        return Container();
+        return LoadingWidget();
       },
     );
   }
