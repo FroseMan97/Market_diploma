@@ -1,4 +1,4 @@
-import 'package:market/datasource/product_datasource.dart';
+import 'package:market/data/datasource/product_datasource.dart';
 import 'package:market/data/mapper/product_mapper.dart';
 import 'package:market/domain/entity/product_entity.dart';
 import 'package:market/domain/repository/product_repository.dart';

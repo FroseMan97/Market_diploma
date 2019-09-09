@@ -1,5 +1,5 @@
 import 'package:market/data/models/client_model.dart';
-import 'package:market/datasource/client_datasource.dart';
+import 'package:market/data/datasource/client_datasource.dart';
 
 class FakeClientDatasourceImpl implements ClientDatasource{
 

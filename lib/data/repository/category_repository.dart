@@ -1,5 +1,5 @@
 import 'package:market/data/mapper/category_mapper.dart';
-import 'package:market/datasource/category_datasource.dart';
+import 'package:market/data/datasource/category_datasource.dart';
 import 'package:market/domain/entity/category_entity.dart';
 import 'package:market/domain/repository/category_repository.dart';
 

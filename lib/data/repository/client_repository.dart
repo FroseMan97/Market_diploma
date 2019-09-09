@@ -1,5 +1,5 @@
 import 'package:market/data/mapper/client_mapper.dart';
-import 'package:market/datasource/client_datasource.dart';
+import 'package:market/data/datasource/client_datasource.dart';
 import 'package:market/domain/entity/client_entity.dart';
 import 'package:market/domain/repository/client_repository.dart';
 

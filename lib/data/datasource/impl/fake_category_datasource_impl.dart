@@ -1,5 +1,5 @@
 import 'package:market/data/models/category_model.dart';
-import 'package:market/datasource/category_datasource.dart';
+import 'package:market/data/datasource/category_datasource.dart';
 
 class FakeCategoryDatasourceImpl implements CategoryDatasource {
   List<CategoryModel> categoryList = [
