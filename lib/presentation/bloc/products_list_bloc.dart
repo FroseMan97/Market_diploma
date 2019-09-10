@@ -3,19 +3,23 @@ import 'dart:async';
 import 'package:market/presentation/bloc/base/base_bloc.dart';
 import 'package:market/domain/entity/product_entity.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
+import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
+import 'package:market/presentation/viewmodel/product_viewmodel.dart';
 import 'package:rxdart/subjects.dart';
 
 class ProductsListBloc extends BaseBloc {
-  BehaviorSubject _productsListSubject = BehaviorSubject<List<ProductEntity>>();
+  BehaviorSubject _productsListSubject = BehaviorSubject<List<ProductViewModel>>();
   Stream get getProductsList => _productsListSubject.stream;
   GetProductsByCategoryUsecase _getProductsByCategoryUsecase;
+  ProductViewModelMapper _productViewModelMapper;
 
-  ProductsListBloc(this._getProductsByCategoryUsecase);
+  ProductsListBloc(this._getProductsByCategoryUsecase, this._productViewModelMapper);
 
   void fetchProductsByCategory(String categoryID) async {
     await _getProductsByCategoryUsecase
         .execute(categoryID)
-        .then((data) => _productsListSubject.add(data))
+        .timeout(Duration(seconds: 5))
+        .then((data) => _productsListSubject.add(_productViewModelMapper.mapEntitiesToViewModels(data)))
         .catchError((error) => _productsListSubject.addError(error.toString()));
   }
 

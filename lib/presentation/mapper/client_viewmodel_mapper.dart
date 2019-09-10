@@ -1,4 +1,4 @@
-import 'package:market/presentation//viewmodel/client_viewmodel.dart';
+import 'package:market/presentation/viewmodel/client_viewmodel.dart';
 import 'package:market/domain/entity/client_entity.dart';
 
 class ClientViewModelMapper {

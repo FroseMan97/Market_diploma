@@ -4,12 +4,11 @@ import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart'
 import 'package:transparent_image/transparent_image.dart';
 
 class SmallInfoProductWidget extends StatelessWidget {
-  SmallInfoProductWidget(this.name, this.manufacter, this.price, this.image,
+  SmallInfoProductWidget(this.name, this.price, this.image,
       {Key key})
       : super(key: key);
 
   final String name;
-  final String manufacter;
   final double price;
   final String image;
 
@@ -21,10 +20,7 @@ class SmallInfoProductWidget extends StatelessWidget {
           CachedNetworkImageWidget(
             image,
           ),
-          Text(
-            manufacter,
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
+         
           Text(
             name,
           ),

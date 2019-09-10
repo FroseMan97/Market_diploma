@@ -8,10 +8,13 @@ import 'package:market/data/datasource/product_datasource.dart';
 import 'package:market/domain/entity/product_entity.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';
+import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/pages/detail_product_page.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/ui/widgets/small_info_product_widget.dart';
+import 'package:market/presentation/viewmodel/product_viewmodel.dart';
 
 class ProductsPage extends BasePage {
   final String title;
@@ -43,7 +46,9 @@ class _ProductsPageState extends State<ProductsPage> {
         ProductsRepositoryImpl(_productDatasource, _productMapper);
     GetProductsByCategoryUsecase _getProductsByCategoryUsecase =
         GetProductsByCategoryUsecase(_productRepository);
-    _productsListBloc = ProductsListBloc(_getProductsByCategoryUsecase);
+    ProductViewModelMapper _productViewModelMapper = ProductViewModelMapper();
+    _productsListBloc = ProductsListBloc(
+        _getProductsByCategoryUsecase, _productViewModelMapper);
     _productsListBloc.fetchProductsByCategory(widget._categoryID);
     ////
     super.initState();
@@ -68,12 +73,12 @@ class _ProductsPageState extends State<ProductsPage> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: StreamBuilder<List<ProductEntity>>(
+        child: StreamBuilder<List<ProductViewModel>>(
           stream: _productsListBloc.getProductsList,
           builder: (context, snapshot) {
             if (snapshot.hasError) {
               return ErrorMessageWidget(snapshot.error);
-            }else if (snapshot.hasData) {
+            } else if (snapshot.hasData) {
               return _showWidgetWithData(snapshot.data);
             }
             return LoadingWidget();
@@ -106,18 +111,25 @@ class _ProductsPageState extends State<ProductsPage> {
           itemCount: items.length,
           crossAxisCount: 4,
           itemBuilder: (context, i) {
-            var item = items[i];
+            ProductViewModel item = items[i];
             return Container(
-              child: SmallInfoProductWidget(
-                  "Дутая куртка",
-                  "Tommy Hilfiger",
-                  14320,
-                  'http://images.jacketmen.org/men-premium-heavyweight-micro-fleece-puffer-hooded.jpg'),
+              child: InkWell(
+                onTap: (){_navigateToDetailProductPage(item.getName,item.getProductID);},
+                              child: SmallInfoProductWidget(
+                    item.getName, item.getPrice, item.getImagesURL[0]),
+              ),
             );
           },
           staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
         ),
       ],
+    );
+  }
+  void _navigateToDetailProductPage(String name,String productID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => DetailProductPage(name,productID)),
     );
   }
 }
