@@ -62,6 +62,12 @@ class _DetailProductPageState extends State<DetailProductPage> {
   }
 
   @override
+  void dispose() {
+    _detailProductBloc.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -97,7 +103,6 @@ class _DetailProductPageState extends State<DetailProductPage> {
                     ),
                     subtitle: Text(item.getName),
                     trailing: IconButton(
-                      
                       icon: Icon(Icons.star),
                       onPressed: () {},
                     ),
@@ -118,7 +123,9 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       'Описание'.toUpperCase(),
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
-                    subtitle: Container(padding: EdgeInsets.only(top: 5),child: Text(item.getDescription)),
+                    subtitle: Container(
+                        padding: EdgeInsets.only(top: 5),
+                        child: Text(item.getDescription)),
                   ),
                   Divider(),
                   StreamBuilder<ManufactureViewModel>(

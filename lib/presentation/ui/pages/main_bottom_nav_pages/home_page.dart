@@ -4,24 +4,33 @@ import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:market/data/datasource/category_datasource.dart';
 import 'package:market/data/datasource/impl/fake_category_datasource_impl.dart';
 import 'package:market/data/datasource/impl/fake_manufacture_datasource_impl.dart';
+import 'package:market/data/datasource/impl/fake_product_datasource_impl.dart';
 import 'package:market/data/datasource/manufacture_datasource.dart';
+import 'package:market/data/datasource/product_datasource.dart';
 import 'package:market/data/mapper/category_mapper.dart';
 import 'package:market/data/mapper/manufacture_mapper.dart';
+import 'package:market/data/mapper/product_mapper.dart';
 import 'package:market/data/repository/category_repository.dart';
 import 'package:market/data/repository/manufacture_repository.dart';
+import 'package:market/data/repository/product_repository.dart';
 import 'package:market/domain/repository/category_repository.dart';
 import 'package:market/domain/repository/manufacture_repository.dart';
+import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_categories_usecase.dart';
 import 'package:market/domain/usecase/get_random_manufactures_usecase.dart';
+import 'package:market/domain/usecase/get_random_products_usecase.dart';
 import 'package:market/presentation/bloc/home_bloc.dart';
 import 'package:market/presentation/mapper/category_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/manufacture_viewmodel_mapper.dart';
+import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
 import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
+import 'package:market/presentation/ui/widgets/small_info_product_widget.dart';
 import 'package:market/presentation/viewmodel/category_viewmodel.dart';
 import 'package:market/presentation/viewmodel/manufacture_viewmodel.dart';
+import 'package:market/presentation/viewmodel/product_viewmodel.dart';
 
 class HomePage extends BasePage {
   final String title;
@@ -53,9 +62,19 @@ class _HomePageState extends State<HomePage> {
         GetRandomManufacturesUsecase(_manufactureRepository);
     ManufactureViewModelMapper _manufactureViewModelMapper =
         ManufactureViewModelMapper();
-    _homeBloc = HomeBloc(_getCategoriesUsecase, _categoryViewModelMapper,
-        _getRandomManufacturesUsecase, _manufactureViewModelMapper);
+    ProductDatasource _productDatasource = FakeProductDatasourceImpl();
+    ProductMapper _productMapper = ProductMapper();
+    ProductRepository _productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
+    GetRandomProductsUsecase _getRandomProductsUsecase = GetRandomProductsUsecase(_productRepository);
+    ProductViewModelMapper _productViewModelMapper = ProductViewModelMapper();
+    _homeBloc = HomeBloc(_getCategoriesUsecase, _categoryViewModelMapper, _getRandomManufacturesUsecase, _manufactureViewModelMapper, _getRandomProductsUsecase, _productViewModelMapper);
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _homeBloc.dispose();
+    super.dispose();
   }
 
   @override
@@ -63,7 +82,6 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: ListView(
         children: <Widget>[
-         
           Container(
             height: 200,
             child: StreamBuilder<List<CategoryViewModel>>(
@@ -96,7 +114,9 @@ class _HomePageState extends State<HomePage> {
                                       ),
                                     ),
                                     child: CachedNetworkImageWidget(
-                                        item.getImageURL)));
+                                      item.getImageURL,
+                                      boxFit: BoxFit.cover,
+                                    )));
                           },
                         );
                       }).toList(),
@@ -111,49 +131,81 @@ class _HomePageState extends State<HomePage> {
           ListTile(
             title: Text('Бренды',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-          ),
-          StreamBuilder<List<ManufactureViewModel>>(
-              stream: _homeBloc.getRandomManufactures,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return ErrorMessageWidget(snapshot.error);
-                } else if (snapshot.hasData) {
-                  return Container(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
-                    child: StaggeredGridView.countBuilder(
-                      mainAxisSpacing: 4,
-                      crossAxisSpacing: 4,
-                      shrinkWrap: true,
-                      primary: false,
-                      crossAxisCount: 6,
-                      itemCount: snapshot.data.length,
-                      itemBuilder: (context, i) {
-                        ManufactureViewModel item = snapshot.data[i];
-                        return Container(
-                          child: Card(
-                            child: Column(
-                              children: <Widget>[
-                                Container(
-                                  height: 70,
-                                  child: CachedNetworkImageWidget(
-                                    item.getImageURL,
-                                    boxFit: BoxFit.contain,
+            subtitle: Container(
+              padding: EdgeInsets.only(top: 10),
+              child: StreamBuilder<List<ManufactureViewModel>>(
+                  stream: _homeBloc.getRandomManufactures,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return ErrorMessageWidget(snapshot.error);
+                    } else if (snapshot.hasData) {
+                      return StaggeredGridView.countBuilder(
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4,
+                        shrinkWrap: true,
+                        primary: false,
+                        crossAxisCount: 6,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, i) {
+                          ManufactureViewModel item = snapshot.data[i];
+                          return Container(
+                            child: Card(
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: 70,
+                                    child: CachedNetworkImageWidget(
+                                      item.getImageURL,
+                                      boxFit: BoxFit.contain,
+                                    ),
                                   ),
-                                ),
-                                Container(
-                                    padding: EdgeInsets.all(5),
-                                    child: Text(item.getName))
-                              ],
+                                  Container(
+                                      padding: EdgeInsets.all(5),
+                                      child: Text(item.getName))
+                                ],
+                              ),
                             ),
-                          ),
-                        );
-                      },
-                      staggeredTileBuilder: (int index) => StaggeredTile.fit(2),
-                    ),
-                  );
-                }
-                return LoadingWidget();
-              })
+                          );
+                        },
+                        staggeredTileBuilder: (int index) =>
+                            StaggeredTile.fit(2),
+                      );
+                    }
+                    return LoadingWidget();
+                  }),
+            ),
+          ),
+          ListTile(
+            title: Text('Последние товары',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            subtitle: Container(
+              padding: EdgeInsets.only(top: 10),
+              child: StreamBuilder<List<ProductViewModel>>(
+                  stream: _homeBloc.getRandomProducts,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return ErrorMessageWidget(snapshot.error);
+                    } else if (snapshot.hasData) {
+                      return StaggeredGridView.countBuilder(
+                        mainAxisSpacing: 4,
+                        crossAxisSpacing: 4,
+                        shrinkWrap: true,
+                        primary: false,
+                        crossAxisCount: 4,
+                        itemCount: snapshot.data.length,
+                        itemBuilder: (context, i) {
+                          ProductViewModel item = snapshot.data[i];
+                          return SmallInfoProductWidget(item.getName,
+                              item.getPrice, item.getImagesURL[0]);
+                        },
+                        staggeredTileBuilder: (int index) =>
+                            StaggeredTile.fit(2),
+                      );
+                    }
+                    return LoadingWidget();
+                  }),
+            ),
+          ),
         ],
       ),
     );

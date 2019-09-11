@@ -28,4 +28,9 @@ class ProductsRepositoryImpl implements ProductRepository {
   Future<List<ProductEntity>> getProducts() async{
     return _productMapper.mapModelsToEntities(await _productDatasource.getProducts());
   }
+
+  @override
+  Future<List<ProductEntity>> getRandomProducts(int quantity)async {
+    return _productMapper.mapModelsToEntities(await _productDatasource.getRandomProducts(quantity));
+  }
 }

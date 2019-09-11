@@ -13,26 +13,30 @@ class SmallInfoProductWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Column(
-        children: <Widget>[
-          CachedNetworkImageWidget(
-            image,
-          ),
-          Container(
-            padding: EdgeInsets.all(5),
-            child: Text(
-              name,
+    return Container(
+      child: Card(
+        child: Column(
+          children: <Widget>[
+            CachedNetworkImageWidget(
+              image,
+              boxFit: BoxFit.cover,
             ),
-          ),
-          Text(
-            '$price RUB',
-            style: TextStyle(fontWeight: FontWeight.w600),
-          ),
-          SizedBox(
-            height: 5,
-          ),
-        ],
+            Container(
+              padding: EdgeInsets.all(5),
+              child: Text(
+                name,
+                maxLines: 1,
+              ),
+            ),
+            Text(
+              '$price RUB',
+              style: TextStyle(fontWeight: FontWeight.w600),
+            ),
+            SizedBox(
+              height: 5,
+            ),
+          ],
+        ),
       ),
     );
   }

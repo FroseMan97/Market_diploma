@@ -114,8 +114,10 @@ class _ProductsPageState extends State<ProductsPage> {
             ProductViewModel item = items[i];
             return Container(
               child: InkWell(
-                onTap: (){_navigateToDetailProductPage(item.getName,item.getProductID);},
-                              child: SmallInfoProductWidget(
+                onTap: () {
+                  _navigateToDetailProductPage(item.getName, item.getProductID);
+                },
+                child: SmallInfoProductWidget(
                     item.getName, item.getPrice, item.getImagesURL[0]),
               ),
             );
@@ -125,11 +127,12 @@ class _ProductsPageState extends State<ProductsPage> {
       ],
     );
   }
-  void _navigateToDetailProductPage(String name,String productID) {
+
+  void _navigateToDetailProductPage(String name, String productID) {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => DetailProductPage(name,productID)),
+          builder: (context) => DetailProductPage(name, productID)),
     );
   }
 }

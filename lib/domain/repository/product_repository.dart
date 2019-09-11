@@ -5,4 +5,5 @@ abstract class ProductRepository {
   Future<ProductEntity> getProductByID(String productID);
   Future<List<ProductEntity>> getProductsByManufactureID(String manufactureID);
   Future<List<ProductEntity>> getProducts();
+  Future<List<ProductEntity>> getRandomProducts(int quantity);
 }

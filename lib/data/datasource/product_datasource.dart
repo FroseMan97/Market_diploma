@@ -5,4 +5,5 @@ abstract class ProductDatasource {
   Future<List<ProductModel>> getProductsByCategoryID(String categoryID);
   Future<List<ProductModel>> getProductsByManufactureID(String manufactureID);
   Future<List<ProductModel>> getProducts();
+  Future<List<ProductModel>> getRandomProducts(int quantity);
 }
