@@ -4,12 +4,12 @@ import 'package:transparent_image/transparent_image.dart';
 
 class CachedNetworkImageWidget extends CachedNetworkImage{
 
-  CachedNetworkImageWidget(String image, {double width, double height, BoxFit boxFit}):super(
+  CachedNetworkImageWidget(String image, {double customWidth, double height, BoxFit boxFit }):super(
             imageUrl: image,
             placeholder: (context, url) => Image.memory(kTransparentImage),
             errorWidget: (context, url, error) => Icon(Icons.error),
-            fit:boxFit?? BoxFit.cover,
-            width:width,
+            fit:boxFit,
+            width:customWidth,
             height:height
   );
 }

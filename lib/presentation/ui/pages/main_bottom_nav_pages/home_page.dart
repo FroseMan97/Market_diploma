@@ -63,9 +63,7 @@ class _HomePageState extends State<HomePage> {
     return Container(
       child: ListView(
         children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
+         
           Container(
             height: 200,
             child: StreamBuilder<List<CategoryViewModel>>(
@@ -75,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                     return ErrorMessageWidget(snapshot.error);
                   } else if (snapshot.hasData) {
                     return CarouselSlider(
+                      enlargeCenterPage: true,
                       pauseAutoPlayOnTouch: Duration(seconds: 3),
                       autoPlay: true,
                       items: snapshot.data.map((item) {
@@ -141,7 +140,9 @@ class _HomePageState extends State<HomePage> {
                                     boxFit: BoxFit.contain,
                                   ),
                                 ),
-                                Container(padding: EdgeInsets.all(5), child: Text(item.getName))
+                                Container(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(item.getName))
                               ],
                             ),
                           ),
