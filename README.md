@@ -17,3 +17,8 @@ detail product page, bloc
 
 <img src="work_log/6day.png" width="285" height="570">
 
+## День 7
+manufacture products list, products_list widget, description property to manufacture
+
+<img src="work_log/7day.png" width="285" height="570">
+
