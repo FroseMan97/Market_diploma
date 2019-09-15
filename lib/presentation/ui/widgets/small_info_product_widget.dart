@@ -19,6 +19,7 @@ class SmallInfoProductWidget extends StatelessWidget {
           children: <Widget>[
             CachedNetworkImageWidget(
               image,
+              height: 250,
               boxFit: BoxFit.cover,
             ),
             Container(

@@ -9,7 +9,8 @@ class ManufactureMapper {
           manufactureEntity.getManufactureID,
           manufactureEntity.getName,
           manufactureEntity.getCountry,
-          manufactureEntity.getImageURL);
+          manufactureEntity.getImageURL,
+          manufactureEntity.getDescription);
     }
     return manufactureModel;
   }
@@ -21,7 +22,8 @@ class ManufactureMapper {
           manufactureModel.getManufactureID,
           manufactureModel.getName,
           manufactureModel.getCountry,
-          manufactureModel.getImageURL);
+          manufactureModel.getImageURL,
+          manufactureModel.getDescription);
     }
     return manufactureEntity;
   }

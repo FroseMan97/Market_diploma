@@ -24,6 +24,8 @@ import 'package:market/presentation/mapper/category_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/manufacture_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/pages/detail_product_page.dart';
+import 'package:market/presentation/ui/pages/manufacture_products_page.dart';
 import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
@@ -31,6 +33,8 @@ import 'package:market/presentation/ui/widgets/small_info_product_widget.dart';
 import 'package:market/presentation/viewmodel/category_viewmodel.dart';
 import 'package:market/presentation/viewmodel/manufacture_viewmodel.dart';
 import 'package:market/presentation/viewmodel/product_viewmodel.dart';
+
+import 'category_products_page.dart';
 
 class HomePage extends BasePage {
   final String title;
@@ -64,10 +68,18 @@ class _HomePageState extends State<HomePage> {
         ManufactureViewModelMapper();
     ProductDatasource _productDatasource = FakeProductDatasourceImpl();
     ProductMapper _productMapper = ProductMapper();
-    ProductRepository _productRepository = ProductsRepositoryImpl(_productDatasource, _productMapper);
-    GetRandomProductsUsecase _getRandomProductsUsecase = GetRandomProductsUsecase(_productRepository);
+    ProductRepository _productRepository =
+        ProductsRepositoryImpl(_productDatasource, _productMapper);
+    GetRandomProductsUsecase _getRandomProductsUsecase =
+        GetRandomProductsUsecase(_productRepository);
     ProductViewModelMapper _productViewModelMapper = ProductViewModelMapper();
-    _homeBloc = HomeBloc(_getCategoriesUsecase, _categoryViewModelMapper, _getRandomManufacturesUsecase, _manufactureViewModelMapper, _getRandomProductsUsecase, _productViewModelMapper);
+    _homeBloc = HomeBloc(
+        _getCategoriesUsecase,
+        _categoryViewModelMapper,
+        _getRandomManufacturesUsecase,
+        _manufactureViewModelMapper,
+        _getRandomProductsUsecase,
+        _productViewModelMapper);
     super.initState();
   }
 
@@ -100,23 +112,28 @@ class _HomePageState extends State<HomePage> {
                             return Container(
                                 width: MediaQuery.of(context).size.width,
                                 margin: EdgeInsets.symmetric(horizontal: 5.0),
-                                child: GridTile(
-                                    footer: Container(
-                                      decoration: BoxDecoration(
-                                          color: Colors.black,
-                                          backgroundBlendMode:
-                                              BlendMode.darken),
-                                      child: Text(
-                                        item.getName,
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                            fontSize: 24, color: Colors.white),
+                                child: InkWell(
+                                  onTap: () => _navigateToCategoryProducts(
+                                      item.getName, item.getID),
+                                  child: GridTile(
+                                      footer: Container(
+                                        decoration: BoxDecoration(
+                                            color: Colors.black,
+                                            backgroundBlendMode:
+                                                BlendMode.darken),
+                                        child: Text(
+                                          item.getName,
+                                          textAlign: TextAlign.center,
+                                          style: TextStyle(
+                                              fontSize: 24,
+                                              color: Colors.white),
+                                        ),
                                       ),
-                                    ),
-                                    child: CachedNetworkImageWidget(
-                                      item.getImageURL,
-                                      boxFit: BoxFit.cover,
-                                    )));
+                                      child: CachedNetworkImageWidget(
+                                        item.getImageURL,
+                                        boxFit: BoxFit.cover,
+                                      )),
+                                ));
                           },
                         );
                       }).toList(),
@@ -148,21 +165,25 @@ class _HomePageState extends State<HomePage> {
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, i) {
                           ManufactureViewModel item = snapshot.data[i];
-                          return Container(
-                            child: Card(
-                              child: Column(
-                                children: <Widget>[
-                                  Container(
-                                    height: 70,
-                                    child: CachedNetworkImageWidget(
-                                      item.getImageURL,
-                                      boxFit: BoxFit.contain,
+                          return InkWell(
+                            onTap: () => _navigateToManufactureProducts(
+                                item.getName, item.getManufactureID),
+                            child: Container(
+                              child: Card(
+                                child: Column(
+                                  children: <Widget>[
+                                    Container(
+                                      height: 70,
+                                      child: CachedNetworkImageWidget(
+                                        item.getImageURL,
+                                        boxFit: BoxFit.contain,
+                                      ),
                                     ),
-                                  ),
-                                  Container(
-                                      padding: EdgeInsets.all(5),
-                                      child: Text(item.getName))
-                                ],
+                                    Container(
+                                        padding: EdgeInsets.all(5),
+                                        child: Text(item.getName))
+                                  ],
+                                ),
                               ),
                             ),
                           );
@@ -195,8 +216,12 @@ class _HomePageState extends State<HomePage> {
                         itemCount: snapshot.data.length,
                         itemBuilder: (context, i) {
                           ProductViewModel item = snapshot.data[i];
-                          return SmallInfoProductWidget(item.getName,
-                              item.getPrice, item.getImagesURL[0]);
+                          return InkWell(
+                            onTap: () => _navigateToDetailProduct(
+                                item.getName, item.getProductID),
+                            child: SmallInfoProductWidget(item.getName,
+                                item.getPrice, item.getImagesURL[0]),
+                          );
                         },
                         staggeredTileBuilder: (int index) =>
                             StaggeredTile.fit(2),
@@ -208,6 +233,32 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+    );
+  }
+
+  void _navigateToCategoryProducts(String categoryName, String categoryID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => CategoryProductsPage(categoryName, categoryID)),
+    );
+  }
+
+  void _navigateToManufactureProducts(
+      String manufactureName, String manufactureID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              ManufactureProductsPage(manufactureName, manufactureID)),
+    );
+  }
+
+  void _navigateToDetailProduct(String productName, String productID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) => DetailProductPage(productName, productID)),
     );
   }
 }

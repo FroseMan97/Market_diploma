@@ -9,11 +9,12 @@ import 'package:market/domain/usecase/get_categories_usecase.dart';
 import 'package:market/presentation/bloc/catalog_bloc.dart';
 import 'package:market/presentation/mapper/category_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
-import 'package:market/presentation/ui/pages/products_page.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/listtile_with_avatar_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/viewmodel/category_viewmodel.dart';
+
+import 'category_products_page.dart';
 
 class CatalogPage extends BasePage {
   final String title;
@@ -75,7 +76,7 @@ class _CatalogPageState extends State<CatalogPage> {
     Navigator.push(
       context,
       MaterialPageRoute(
-          builder: (context) => ProductsPage(categoryName, categoryID)),
+          builder: (context) => CategoryProductsPage(categoryName, categoryID)),
     );
   }
 }
