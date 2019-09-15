@@ -38,6 +38,14 @@ class FakeProductDatasourceImpl implements ProductDatasource {
          [
            'https://assets.adidas.com/images/w_600,h_600,f_auto,q_auto:sensitive,fl_lossy/9bde0dfc29084b398f9ea82701525c50_9366/Krossovki_EQT_Support_Mid_ADV_Primeknit_chernyj_CQ2998_01_standard.jpg',
            'https://www.sneakerdistrict.com/images2/Adidas-EQT-Support-Mid-ADV-Primeknit-Sub-Green-Core-Black-2-800.jpg'
+           ], 3999),
+           ProductModel('productID48', 'manufactureID1', 'categoryID2', 'КРОССОВКИ ИЗ КОЖИ',
+        'Изысканная интерпретация классических кроссовок для бега. Эта модель внесет ноту элегантности в повседневный гардероб',
+         [
+           'https://tommy-europe.scene7.com/is/image/TommyEurope/FM0FM02550_BDS_main',
+           'https://tommy-europe.scene7.com/is/image/TommyEurope/FM0FM02550_BDS_alternate3',
+           'https://tommy-europe.scene7.com/is/image/TommyEurope/FM0FM02550_BDS_alternate1',
+           'https://tommy-europe.scene7.com/is/image/TommyEurope/FM0FM02550_BDS_alternate2'
            ], 3999)
   ];
   @override

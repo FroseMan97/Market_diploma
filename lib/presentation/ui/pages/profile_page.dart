@@ -5,7 +5,7 @@ import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/viewmodel/client_viewmodel.dart';
 import 'package:market/data/datasource/impl/fake_client_datasource_impl.dart';
 import 'package:market/data/mapper/client_mapper.dart';
-import 'package:market/data/repository/client_repository.dart';
+import 'package:market/data/repository/client_repository_impl.dart';
 import 'package:market/data/datasource/client_datasource.dart';
 import 'package:market/domain/repository/client_repository.dart';
 import 'package:market/domain/usecase/get_current_client_info_usecase.dart';

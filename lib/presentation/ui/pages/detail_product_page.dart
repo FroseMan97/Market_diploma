@@ -6,8 +6,8 @@ import 'package:market/data/datasource/manufacture_datasource.dart';
 import 'package:market/data/datasource/product_datasource.dart';
 import 'package:market/data/mapper/manufacture_mapper.dart';
 import 'package:market/data/mapper/product_mapper.dart';
-import 'package:market/data/repository/manufacture_repository.dart';
-import 'package:market/data/repository/product_repository.dart';
+import 'package:market/data/repository/manufacture_repository_impl.dart';
+import 'package:market/data/repository/product_repository_impl.dart';
 import 'package:market/domain/repository/manufacture_repository.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_manufacture_usecase.dart';
@@ -16,6 +16,7 @@ import 'package:market/presentation/bloc/detail_product_bloc.dart';
 import 'package:market/presentation/mapper/manufacture_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
+import 'package:market/presentation/ui/pages/manufacture_products_page.dart';
 import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
@@ -137,13 +138,16 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       } else if (snapshot.hasData) {
                         ManufactureViewModel item = snapshot.data;
                         return ListTile(
-                          title: Text(
-                            'Бренд'.toUpperCase(),
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(item.getName),
-                          trailing: CachedNetworkImageWidget(item.getImageURL),
-                        );
+                            onTap: () => _navigateToManufacture(
+                                item.getName, item.getManufactureID),
+                            title: Text(
+                              'Бренд'.toUpperCase(),
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(item.getName),
+                            trailing: CachedNetworkImageWidget(
+                              item.getImageURL,
+                            ));
                       }
                       return LoadingWidget();
                     },
@@ -162,5 +166,14 @@ class _DetailProductPageState extends State<DetailProductPage> {
             return LoadingWidget();
           },
         ));
+  }
+
+  void _navigateToManufacture(String manufactureName, String manufactureID) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+          builder: (context) =>
+              ManufactureProductsPage(manufactureName, manufactureID)),
+    );
   }
 }

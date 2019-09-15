@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:market/presentation/bloc/category_products_bloc.dart';
 import 'package:market/data/datasource/impl/fake_product_datasource_impl.dart';
 import 'package:market/data/mapper/product_mapper.dart';
-import 'package:market/data/repository/product_repository.dart';
+import 'package:market/data/repository/product_repository_impl.dart';
 import 'package:market/data/datasource/product_datasource.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_products_by_category_usecase.dart';

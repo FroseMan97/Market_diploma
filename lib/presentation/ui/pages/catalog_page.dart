@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:market/data/datasource/impl/fake_category_datasource_impl.dart';
 import 'package:market/data/mapper/category_mapper.dart';
-import 'package:market/data/repository/category_repository.dart';
+import 'package:market/data/repository/category_repository_impl.dart';
 import 'package:market/data/datasource/category_datasource.dart';
 import 'package:market/domain/repository/category_repository.dart';
 import 'package:market/domain/usecase/get_categories_usecase.dart';

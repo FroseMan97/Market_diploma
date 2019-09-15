@@ -5,14 +5,12 @@ import 'package:market/data/datasource/manufacture_datasource.dart';
 import 'package:market/data/datasource/product_datasource.dart';
 import 'package:market/data/mapper/manufacture_mapper.dart';
 import 'package:market/data/mapper/product_mapper.dart';
-import 'package:market/data/repository/manufacture_repository.dart';
-import 'package:market/data/repository/product_repository.dart';
+import 'package:market/data/repository/manufacture_repository_impl.dart';
+import 'package:market/data/repository/product_repository_impl.dart';
 import 'package:market/domain/repository/manufacture_repository.dart';
 import 'package:market/domain/repository/product_repository.dart';
 import 'package:market/domain/usecase/get_manufacture_usecase.dart';
 import 'package:market/domain/usecase/get_products_by_manufacture_usecase.dart';
-import 'package:market/domain/usecase/get_products_by_manufacture_usecase.dart'
-    as prefix0;
 import 'package:market/presentation/bloc/manufacture_bloc.dart';
 import 'package:market/presentation/mapper/manufacture_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
