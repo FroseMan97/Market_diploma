@@ -113,34 +113,37 @@ class _BrandProductsPageState extends State<ManufactureProductsPage> {
   }
 
   _buildManufactureHeader(ManufactureViewModel manufacture) {
-    return Card(
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            flex: 1,
-            child: Container(
-              margin: EdgeInsets.all(10),
-              child: Column(
-                children: <Widget>[
-                  CachedNetworkImageWidget(manufacture.getImageURL),
-                  Text(
-                    manufacture.getName,
-                    textAlign: TextAlign.center,
-                  ),
-                  Text(manufacture.getCountry)
-                ],
+    return Container(
+      margin: EdgeInsets.only(top:10,left:10,right: 10),
+      child: Card(
+        child: Row(
+          children: <Widget>[
+            Expanded(
+              flex: 1,
+              child: Container(
+                margin: EdgeInsets.all(10),
+                child: Column(
+                  children: <Widget>[
+                    CachedNetworkImageWidget(manufacture.getImageURL),
+                    Text(
+                      manufacture.getName,
+                      textAlign: TextAlign.center,
+                    ),
+                    Text(manufacture.getCountry)
+                  ],
+                ),
               ),
             ),
-          ),
-          Expanded(
-              flex: 2,
-              child: Container(
-                  margin: EdgeInsets.all(10),
-                  child: Text(
-                    manufacture.getDescription,
-                    maxLines: 5,
-                  )))
-        ],
+            Expanded(
+                flex: 2,
+                child: Container(
+                    margin: EdgeInsets.all(10),
+                    child: Text(
+                      manufacture.getDescription,
+                      maxLines: 5,
+                    )))
+          ],
+        ),
       ),
     );
   }
