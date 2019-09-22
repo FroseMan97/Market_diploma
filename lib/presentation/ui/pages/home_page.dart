@@ -26,7 +26,6 @@ import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
 import 'package:market/presentation/ui/pages/detail_product_page.dart';
 import 'package:market/presentation/ui/pages/manufacture_products_page.dart';
-import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/ui/widgets/small_info_product_widget.dart';
@@ -95,7 +94,7 @@ class _HomePageState extends State<HomePage> {
       child: ListView(
         children: <Widget>[
           Container(
-            height: 200,
+            //height: 200,
             child: StreamBuilder<List<CategoryViewModel>>(
                 stream: _homeBloc.getCategoriesList,
                 builder: (context, snapshot) {
@@ -129,9 +128,9 @@ class _HomePageState extends State<HomePage> {
                                               color: Colors.white),
                                         ),
                                       ),
-                                      child: CachedNetworkImageWidget(
+                                      child: Image.network(
                                         item.getImageURL,
-                                        boxFit: BoxFit.cover,
+                                        fit: BoxFit.contain,
                                       )),
                                 ));
                           },
@@ -174,9 +173,9 @@ class _HomePageState extends State<HomePage> {
                                   children: <Widget>[
                                     Container(
                                       height: 70,
-                                      child: CachedNetworkImageWidget(
+                                      child: Image.network(
                                         item.getImageURL,
-                                        boxFit: BoxFit.contain,
+                                        fit: BoxFit.contain,
                                       ),
                                     ),
                                     Container(

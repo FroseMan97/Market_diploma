@@ -15,7 +15,6 @@ import 'package:market/presentation/bloc/manufacture_bloc.dart';
 import 'package:market/presentation/mapper/manufacture_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
-import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/ui/widgets/products_list_widget.dart';
@@ -124,7 +123,7 @@ class _BrandProductsPageState extends State<ManufactureProductsPage> {
                 margin: EdgeInsets.all(10),
                 child: Column(
                   children: <Widget>[
-                    CachedNetworkImageWidget(manufacture.getImageURL),
+                    Image.network(manufacture.getImageURL),
                     Text(
                       manufacture.getName,
                       textAlign: TextAlign.center,

@@ -1,7 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
-import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
-import 'package:transparent_image/transparent_image.dart';
+
 
 class SmallInfoProductWidget extends StatelessWidget {
   SmallInfoProductWidget(this.name, this.price, this.image, {Key key})
@@ -17,11 +16,7 @@ class SmallInfoProductWidget extends StatelessWidget {
       child: Card(
         child: Column(
           children: <Widget>[
-            CachedNetworkImageWidget(
-              image,
-              height: 250,
-              boxFit: BoxFit.cover,
-            ),
+            Image.network(image),
             Container(
               padding: EdgeInsets.all(5),
               child: Text(

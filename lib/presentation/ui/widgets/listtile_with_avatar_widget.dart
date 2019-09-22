@@ -1,4 +1,4 @@
-import 'package:cached_network_image/cached_network_image.dart';
+
 import 'package:flutter/material.dart';
 
 class ListTileWithAvatarWidget extends StatelessWidget {
@@ -15,13 +15,10 @@ class ListTileWithAvatarWidget extends StatelessWidget {
         onTap: onTap,
         title: Text(text),
         contentPadding: EdgeInsets.all(10),
-        leading: CachedNetworkImage(
-            imageUrl: imageURL,
-            imageBuilder: (context, imageProvider) => CircleAvatar(
-                  backgroundImage: imageProvider,
+        leading: CircleAvatar(
+                  backgroundImage: NetworkImage(imageURL),
                   radius: 30,
                 ),
-            errorWidget: (context, url, error) => Icon(Icons.error)),
       ),
     );
   }

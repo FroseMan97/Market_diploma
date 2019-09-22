@@ -17,7 +17,7 @@ import 'package:market/domain/usecase/get_liked_products_usecase.dart';
 import 'package:market/presentation/bloc/liked_products_bloc.dart';
 import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
-import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
+
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/viewmodel/product_viewmodel.dart';
@@ -85,7 +85,7 @@ class _LikedProductsPageState extends State<LikedProductsPage> {
                 itemBuilder: (context, i) {
                   ProductViewModel item = listOfLikedProducts[i];
                   return ListTile(
-                    leading: CachedNetworkImageWidget(item.getImagesURL[0]),
+                    leading: Image.network(item.getImagesURL[0]),
                     title: Text(item.getName),
                   );
                 },

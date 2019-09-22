@@ -17,7 +17,6 @@ import 'package:market/presentation/mapper/manufacture_viewmodel_mapper.dart';
 import 'package:market/presentation/mapper/product_viewmodel_mapper.dart';
 import 'package:market/presentation/ui/pages/base/base_page.dart';
 import 'package:market/presentation/ui/pages/manufacture_products_page.dart';
-import 'package:market/presentation/ui/widgets/cached_network_image_widget.dart';
 import 'package:market/presentation/ui/widgets/error_message_widget.dart';
 import 'package:market/presentation/ui/widgets/loading_widget.dart';
 import 'package:market/presentation/viewmodel/manufacture_viewmodel.dart';
@@ -90,10 +89,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                     items: item.getImagesURL
                         .map((image) => Container(
                               width: MediaQuery.of(context).size.width,
-                              child: CachedNetworkImageWidget(
-                                image,
-                                boxFit: BoxFit.fitWidth,
-                              ),
+                              child: Image.network(image,fit:BoxFit.fitWidth),
                             ))
                         .toList(),
                   ),
@@ -118,7 +114,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                       onPressed: () {},
                     ),
                   ),
-                  Divider(),
+                  
                   ListTile(
                     title: Text(
                       'Описание'.toUpperCase(),
@@ -128,7 +124,7 @@ class _DetailProductPageState extends State<DetailProductPage> {
                         padding: EdgeInsets.only(top: 5),
                         child: Text(item.getDescription)),
                   ),
-                  Divider(),
+                  
                   StreamBuilder<ManufactureViewModel>(
                     stream: _detailProductBloc.getManufacture,
                     builder: (context,
@@ -145,14 +141,12 @@ class _DetailProductPageState extends State<DetailProductPage> {
                               style: TextStyle(fontWeight: FontWeight.bold),
                             ),
                             subtitle: Text(item.getName),
-                            trailing: CachedNetworkImageWidget(
-                              item.getImageURL,
-                            ));
+                            trailing: Image.network(item.getImageURL));
                       }
                       return LoadingWidget();
                     },
                   ),
-                  Divider(),
+                  
                   ListTile(
                     title: Text(
                       'Код товара'.toUpperCase(),
